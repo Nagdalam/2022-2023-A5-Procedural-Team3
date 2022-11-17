@@ -1603,6 +1603,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8716258351562437284, guid: 5218b1326248c8c4b93b5d5335035873, type: 3}
+      propertyPath: prefabBullet
+      value: 
+      objectReference: {fileID: 5485737571027047290, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
+    - target: {fileID: 8716258351562437284, guid: 5218b1326248c8c4b93b5d5335035873, type: 3}
+      propertyPath: currentWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 72ce67b2217baa0449d3db761a8396c2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5218b1326248c8c4b93b5d5335035873, type: 3}
 --- !u!1001 &5155899502344072467

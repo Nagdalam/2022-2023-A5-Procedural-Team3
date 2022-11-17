@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2DMovement movement;
     private Shooter[] shooters;
 
+    
     private void Awake()
     {
         shooters = GetComponentsInChildren<Shooter>();
