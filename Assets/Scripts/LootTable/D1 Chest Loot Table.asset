@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3660bc0f7ca10a149ab724c4d70f08a1, type: 3}
+  m_Name: D1 Chest Loot Table
+  m_EditorClassIdentifier: 
+  data:
+  - lootID: 1
+    lootName: Copper
+    lootType: 0
+    lootRarity: 0
+    lootDropRate: 0
+  - lootID: 0
+    lootName: Little Heart
+    lootType: 0
+    lootRarity: 0
+    lootDropRate: 0
