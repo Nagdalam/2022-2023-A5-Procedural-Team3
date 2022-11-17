@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Chest : Interactible
 {
-    public DataLootTable lootTable;
+    private LootTable lootTable;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        TryGetComponent(out lootTable);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.T))
+            lootTable.RandLoot();
     }
 }

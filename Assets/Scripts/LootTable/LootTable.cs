@@ -5,35 +5,36 @@ using System.Linq;
 
 public class LootTable : MonoBehaviour
 {
-    public List<SDataLootTable> lootTable = new List<SDataLootTable>();
-    public int totalLoots = 0;
+    public DataLootTable lootTable;
+    private int totalLoots = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        lootTable.Sort((l1, l2) => l1.lootDropRate.CompareTo(l2.lootDropRate));
-        totalLoots = lootTable.Count;
+        
+        lootTable.data.Sort((l1, l2) => l1.lootDropRate.CompareTo(l2.lootDropRate));
+        totalLoots = lootTable.data.Count;
 
         /*for (int i = 0; i < totalLoots; ++i)
-            Debug.Log($"{i} : {lootTable[i].lootID} - {lootTable[i].lootDropRate}");*/
+            Debug.Log($"{i} : {lootTable.data[i].lootID} - {lootTable.data[i].lootDropRate}");*/
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
-            DropLoot();
-        }
+            RandLoot();
+        }*/
     }
 
-    public Pickup DropLoot()
+    public Pickup RandLoot()
     {
-        float totalWeight = lootTable.Sum(x => x.lootDropRate);
+        float totalWeight = lootTable.data.Sum(x => x.lootDropRate);
         float rand = Random.Range(0, totalWeight);
-        Debug.Log(totalWeight);
-        Debug.Log(rand);
+        /*Debug.Log(totalWeight);
+        Debug.Log(rand);*/
         float sumWeight = 0;
         int indexDrop = 0;
         float selectedDropRate = 0;
@@ -41,43 +42,37 @@ public class LootTable : MonoBehaviour
         // On sélectionne le premier objet tiré au sort en fonction du poids total
         for (int i = 0; i < totalLoots; ++i)
         {
-            sumWeight += lootTable[i].lootDropRate;
+            sumWeight += lootTable.data[i].lootDropRate;
             if (rand <= sumWeight)
             {
                 indexDrop = i;
-                selectedDropRate = lootTable[i].lootDropRate;
+                selectedDropRate = lootTable.data[i].lootDropRate;
                 break;
             }
         }
 
         // On cherche s'il existe d'autres objets ayant le même drop rate que l'objet sélectionné
         var occurrences = new List<SDataLootTable>();
-        for (int i = indexDrop; i < totalLoots; ++i)
+        for (int i = 0; i < totalLoots; ++i)
         {
-            if (lootTable[i].lootDropRate == selectedDropRate)
-                occurrences.Add(lootTable[i]);
-            else 
-                break;
+            if (lootTable.data[i].lootDropRate == selectedDropRate)
+                occurrences.Add(lootTable.data[i]);
+            /*else 
+                break;*/
         }
 
-        Debug.Log($"Selected : {lootTable[indexDrop].lootID} : {occurrences.Count}");
+        Debug.Log($"Selected : {lootTable.data[indexDrop].lootID} : {occurrences.Count}");
         Debug.Log(occurrences.Count());
 
+       /* rand = 0;
         // Si plusieurs objets ont le même drop rate, alors il faut les départager équitablement
         if (occurrences.Count > 1)
         {
+            rand = Random.Range(0, occurrences.Count);
+            Debug.Log($"Rerand Selected : {lootTable.data[(int)rand].lootID} : {occurrences.Count}");
 
-        }
+        }*/
 
-        else
-        {
-            
-        }
-
-        // On génère l'objet loot
-        /*Pickup pickup = new Pickup();*/
-
-        /*return pickup*/;
         return null;
     }
 }

@@ -17,9 +17,14 @@ MonoBehaviour:
     lootName: Copper
     lootType: 0
     lootRarity: 0
-    lootDropRate: 0
+    lootDropRate: 80
   - lootID: 0
     lootName: Little Heart
     lootType: 0
     lootRarity: 0
-    lootDropRate: 0
+    lootDropRate: 20
+  - lootID: 2
+    lootName: Chestie
+    lootType: 0
+    lootRarity: 0
+    lootDropRate: 20

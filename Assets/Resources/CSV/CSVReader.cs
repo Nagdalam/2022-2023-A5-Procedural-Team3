@@ -10,11 +10,11 @@ public class CSVReader : MonoBehaviour
 
     void Start()
     {
-        readData();
+        ReadData();
     }
 
     // Read data from CSV file
-    public void readData()
+    public void ReadData()
     {
         string[] records = csvFile.text.Split('\n');
         Debug.Log(records.Length);

@@ -10,40 +10,35 @@ public static class GenerateEnum
     public static List<string> enumNames = new List<string>();
 
     // Read data from CSV file
-    public static void readData()
+    public static void ReadData()
     {
         string[] records = csvFile.text.Split('\n');
         Debug.Log(records.Length);
 
         string[] columnNames = records[0].Split(';');
 
-        for (int i = 0; i < columnNames.Length; ++i)
-        {
-            Debug.Log(columnNames[i]);
-        }
-
-        Debug.Log("!!!!!!!!!!!");
-
+        /*for (int i = 0; i < columnNames.Length; ++i)*/
+            /*Debug.Log(columnNames[i]);*/
+       
         for (int i = 1; i < columnNames.Length; ++i)
         {
             string[] fields = records[i].Split(';');
-            Debug.Log($"ID : {fields[0]}");
+            /*Debug.Log($"ID : {fields[0]}");*/
 
             enumNames.Add(fields[0]);
 
-            for (int j = 1; j < columnNames.Length; ++j)
+           /* for (int j = 1; j < columnNames.Length; ++j)
             {
-                Debug.Log(fields[j]);
-            }
-
-            Debug.Log("----------");
+                *//*Debug.Log(fields[j]);*//*
+            }*/
+            /*Debug.Log("----------");*/
         }
     }
 
     [MenuItem("Tools/GenerateEnum")]
     public static void GenerateLootTableEnum()
     {
-        readData();
+        ReadData();
         string enumName = "ELootTable";
         string filePathAndName = "Assets/Scripts/LootTable/Enums/ELootTable.cs";
 
