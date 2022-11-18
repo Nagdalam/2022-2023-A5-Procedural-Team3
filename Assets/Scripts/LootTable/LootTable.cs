@@ -2,12 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using UnityEngine.UI;
+
+[Serializable]
+public class DataPickupDictionary : UDictionary<ELootID, SDataLootTable> { }
 
 public class LootTable : MonoBehaviour
 {
+    public EEntities entity = EEntities.CHEST_1;
     public DataLootTable lootTable;
     private int totalLoots = 0;
 
+    [UDictionary.Split(55, 45)]
+    public DataPickupDictionary dicoLootTable;
+
+    public class Key
+    {
+        public ELootID lootID;
+    }
+
+    [Serializable]
+    public class Value
+    {
+        public SDataLootTable dataLootTable;
+    }
+
+    private void Awake()
+    {
+        GenerateEntitiesLootTable.SetData(entity, dicoLootTable);
+        Debug.Log(dicoLootTable.Count);
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +58,7 @@ public class LootTable : MonoBehaviour
     public Pickup RandLoot()
     {
         float totalWeight = lootTable.data.Sum(x => x.lootDropRate);
-        float rand = Random.Range(0, totalWeight);
+        float rand = UnityEngine.Random.Range(0, totalWeight);
         /*Debug.Log(totalWeight);
         Debug.Log(rand);*/
         float sumWeight = 0;

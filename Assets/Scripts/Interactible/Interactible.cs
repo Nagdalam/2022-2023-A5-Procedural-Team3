@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Interactible : MonoBehaviour
 {
+    public EEntities entity = EEntities.CHEST_1;
     // Start is called before the first frame update
     void Start()
     {

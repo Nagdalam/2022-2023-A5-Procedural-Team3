@@ -13,7 +13,7 @@ public static class GenerateEnum
     public static void ReadData()
     {
         string[] records = csvFile.text.Split('\n');
-        Debug.Log(records.Length);
+        /*Debug.Log(records.Length);*/
 
         string[] columnNames = records[0].Split(';');
 

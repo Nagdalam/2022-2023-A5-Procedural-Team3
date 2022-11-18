@@ -1,6 +1,6 @@
-﻿ID;TYPE;Name;Rarity;Drop Rate
-HEART_LOW_1;CONSUMMABLE;Little Heart;Common;30
-COIN_1;CURRENCY;Copper;Common;30
-CHEST_1;GEAR;Platinum Chest;Uncommon;10
-SWORD_1;GEAR;Diamond Sword;Legendary;5
-NONE;NONE;NONE;Common;25
+ID;TYPE;Name;Rarity
+HEART_1;CONSUMMABLE;Little Heart;Common
+COIN_1;CURRENCY;Copper;Common
+CHEST_1;GEAR;Platinum Chest;Uncommon
+SWORD_1;GEAR;Diamond Sword;Legendary
+NONE;NONE;NONE;Common
