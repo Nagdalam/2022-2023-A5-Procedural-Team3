@@ -18,6 +18,7 @@ public class ItemSpawner : MonoBehaviour
     BoxCollider2D boxCollider2D;
     List<GameObject> itemSpawn = new List<GameObject>();
     public float distanceMinBetweenObjects;
+    public int comptToSpawn;
     public bool showGizmo;
 
     private void OnEnable()
@@ -39,13 +40,13 @@ public class ItemSpawner : MonoBehaviour
                     while (Physics2D.OverlapCircle(newPos, distanceMinBetweenObjects, layerMask))
                     {
                         newPos = RandomPointInBounds(boxCollider2D.bounds);
-                        compt++;
-                        if (compt == 10)
+                        if (compt == comptToSpawn)
                         {
                             Debug.LogError("Not enough place : " + Physics2D.OverlapCircle(newPos, 1, layerMask));
                             dontSpawn = true;
                             break;
                         }
+                        compt++;
                     }
                     if (!dontSpawn)
                     {
