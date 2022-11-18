@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91ac70e2d7baa147b62498c9d68c340, type: 3}
   m_Name: D1 Data Loot ID and Associated Prefab
   m_EditorClassIdentifier: 
-  dataPickup:
-    keys: 000000000200000003000000
+  dataPickupDictionary:
+    keys: 000000000100000002000000030000000400000005000000
     values:
     - {fileID: 6089862958128295900, guid: 9db1b18e6bc316744a29d8d92356a29f, type: 3}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 7143052517036596304, guid: 11b8838a4c6ce77419cc01543c075555, type: 3}

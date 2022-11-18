@@ -10,6 +10,7 @@ public class CustomHelper : Editor
         if (GUILayout.Button("Generate Entities ID And Loot Table"))
         {
             generateEandLT.GenerateEntitiesEnum();
+            AssetDatabase.Refresh();
         }
         DrawDefaultInspector();
     }
@@ -24,6 +25,7 @@ public class CustomGenerateLootID : Editor
         if (GUILayout.Button("Generate Loot ID"))
         {
             generateLootID.GenerateLootTableEnum();
+            AssetDatabase.Refresh();
         }
         DrawDefaultInspector();
     }

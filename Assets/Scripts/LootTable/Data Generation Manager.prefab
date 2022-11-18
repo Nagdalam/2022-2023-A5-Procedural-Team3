@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116649871993211867}
-  - component: {fileID: 116649871993211868}
   - component: {fileID: 7010233374960396760}
+  - component: {fileID: 116649871993211868}
+  - component: {fileID: 144140390}
   m_Layer: 0
   m_Name: Data Generation Manager
   m_TagString: Untagged
@@ -33,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &116649871993211868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116649871993211869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b170d273adb18384ea7a1be7ea511976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  csvFile: {fileID: 4900000, guid: fbf4b48f6e8e0fd449b0eb510b53332a, type: 3}
 --- !u!114 &7010233374960396760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,3 +47,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   csvFile: {fileID: 4900000, guid: 2916cac7732accf4782f1a89a78394ad, type: 3}
+  dataPickup: {fileID: 11400000, guid: d38c779b4fc27df44ab1b2742124c2ce, type: 2}
+--- !u!114 &116649871993211868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116649871993211869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b170d273adb18384ea7a1be7ea511976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  csvFile: {fileID: 4900000, guid: fbf4b48f6e8e0fd449b0eb510b53332a, type: 3}
+--- !u!114 &144140390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116649871993211869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5313b610e9dace74e96f4602568ed29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataPickup: {fileID: 11400000, guid: d38c779b4fc27df44ab1b2742124c2ce, type: 2}

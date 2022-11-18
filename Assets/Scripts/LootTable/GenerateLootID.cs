@@ -9,6 +9,7 @@ public class GenerateLootID : MonoBehaviour
     public TextAsset csvFile = null;
     private List<string> enumNames = new List<string>();
     private int nbRows = 0;
+    public DataPickup dataPickup = null;
 
     public static GenerateLootID current;
 
@@ -37,10 +38,28 @@ public class GenerateLootID : MonoBehaviour
             streamWriter.WriteLine("{");
             for (int i = 0; i < enumNames.Count; i++)
             {
-                streamWriter.WriteLine("\t" + enumNames[i] + ",");
+                /*if (enumNames[i] == "")
+                    continue;*/
+
+                streamWriter.WriteLine("\t" + enumNames[i] + ",");             
             }
             streamWriter.WriteLine("}");
         }
+
+        AssetDatabase.Refresh();
+
+        for (int i = 0; i < enumNames.Count; ++i)
+        {
+            ELootID lootID = (ELootID)System.Enum.Parse(typeof(ELootID), enumNames[i]);
+            if (!dataPickup.dataPickupDictionary.ContainsKey(lootID))
+            {
+                Debug.Log(lootID);
+                dataPickup.dataPickupDictionary.Add(lootID, null);
+            }
+            else
+                Debug.Log($"contains : {lootID}");
+        }
+        Debug.Log(dataPickup.dataPickupDictionary.Count);
         AssetDatabase.Refresh();
     }
 }

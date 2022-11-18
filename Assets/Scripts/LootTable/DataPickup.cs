@@ -22,7 +22,7 @@ using Random = UnityEngine.Random;
 public class DataPickup : ScriptableObject
 {
     [UDictionary.Split(55, 45)]
-    public DataPickupDictionary dataPickup;
+    public DataPickupDictionary dataPickupDictionary;
     [Serializable]
     public class DataPickupDictionary : UDictionary<ELootID, GameObject> { }
 

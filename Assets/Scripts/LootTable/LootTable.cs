@@ -80,6 +80,17 @@ public class LootTable : MonoBehaviour
         Debug.Log($"Selected : {lootTable[indexDrop].lootID} : {occurrences.Count}");
         Debug.Log(occurrences.Count());
 
+        ELootID selectedLoot = lootTable[indexDrop].lootID;
+
+        if (!(DungeonManager.current.dataPickup.dataPickupDictionary[selectedLoot]))
+        {
+            Debug.Log("No Prefab Associated with the Loot ID");
+            return null;
+        }
+
+        Instantiate(DungeonManager.current.dataPickup.dataPickupDictionary[
+            lootTable[indexDrop].lootID]);
+
         return null;
     }
 }
