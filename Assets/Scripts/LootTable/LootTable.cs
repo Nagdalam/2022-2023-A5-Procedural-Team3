@@ -4,46 +4,36 @@ using UnityEngine;
 using System.Linq;
 using System;
 using UnityEngine.UI;
+using System.ComponentModel;
 
 [Serializable]
 public class DataPickupDictionary : UDictionary<ELootID, SDataLootTable> { }
 
 public class LootTable : MonoBehaviour
 {
-    public EEntities entity = EEntities.CHEST_1;
-    public DataLootTable lootTable;
+    [ReadOnly] public EEntities entity = EEntities.CHEST_1;
+    /*public DataLootTable lootTable;*/
     private int totalLoots = 0;
 
     [UDictionary.Split(55, 45)]
-    public DataPickupDictionary dicoLootTable;
+    [ReadOnly] public DataPickupDictionary dicoLootTable;
 
-    public class Key
-    {
-        public ELootID lootID;
-    }
+    public class Key { [ReadOnly] public ELootID lootID; }
+    public class Value { [ReadOnly] public SDataLootTable dataLootTable; }
 
-    [Serializable]
-    public class Value
-    {
-        public SDataLootTable dataLootTable;
-    }
+    [ReadOnly] List<SDataLootTable> lootTable = new List<SDataLootTable>();
 
     private void Awake()
     {
-        GenerateEntitiesLootTable.SetData(entity, dicoLootTable);
-        Debug.Log(dicoLootTable.Count);
-
+        GenerateEntitiesIDAndLootTable.current.SetData(entity, dicoLootTable);
+        lootTable = dicoLootTable.Values;
+        totalLoots = dicoLootTable.Count;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-        
-        lootTable.data.Sort((l1, l2) => l1.lootDropRate.CompareTo(l2.lootDropRate));
-        totalLoots = lootTable.data.Count;
-
         /*for (int i = 0; i < totalLoots; ++i)
-            Debug.Log($"{i} : {lootTable.data[i].lootID} - {lootTable.data[i].lootDropRate}");*/
-
+            Debug.Log($"{i} : {lootTable[i].lootID} - {lootTable[i].lootDropRate}");*/
     }
 
     // Update is called once per frame
@@ -57,7 +47,7 @@ public class LootTable : MonoBehaviour
 
     public Pickup RandLoot()
     {
-        float totalWeight = lootTable.data.Sum(x => x.lootDropRate);
+        float totalWeight = lootTable.Sum(x => x.lootDropRate);
         float rand = UnityEngine.Random.Range(0, totalWeight);
         /*Debug.Log(totalWeight);
         Debug.Log(rand);*/
@@ -68,11 +58,11 @@ public class LootTable : MonoBehaviour
         // On sélectionne le premier objet tiré au sort en fonction du poids total
         for (int i = 0; i < totalLoots; ++i)
         {
-            sumWeight += lootTable.data[i].lootDropRate;
+            sumWeight += lootTable[i].lootDropRate;
             if (rand <= sumWeight)
             {
                 indexDrop = i;
-                selectedDropRate = lootTable.data[i].lootDropRate;
+                selectedDropRate = lootTable[i].lootDropRate;
                 break;
             }
         }
@@ -81,23 +71,14 @@ public class LootTable : MonoBehaviour
         var occurrences = new List<SDataLootTable>();
         for (int i = 0; i < totalLoots; ++i)
         {
-            if (lootTable.data[i].lootDropRate == selectedDropRate)
-                occurrences.Add(lootTable.data[i]);
+            if (lootTable[i].lootDropRate == selectedDropRate)
+                occurrences.Add(lootTable[i]);
             /*else 
                 break;*/
         }
 
-        Debug.Log($"Selected : {lootTable.data[indexDrop].lootID} : {occurrences.Count}");
+        Debug.Log($"Selected : {lootTable[indexDrop].lootID} : {occurrences.Count}");
         Debug.Log(occurrences.Count());
-
-       /* rand = 0;
-        // Si plusieurs objets ont le même drop rate, alors il faut les départager équitablement
-        if (occurrences.Count > 1)
-        {
-            rand = Random.Range(0, occurrences.Count);
-            Debug.Log($"Rerand Selected : {lootTable.data[(int)rand].lootID} : {occurrences.Count}");
-
-        }*/
 
         return null;
     }

@@ -5,4 +5,5 @@ public enum ELootID
 	CHEST_1,
 	SWORD_1,
 	NONE,
+	KEY_1,
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e91ac70e2d7baa147b62498c9d68c340, type: 3}
-  m_Name: D1 Data Loot to Pickup
+  m_Name: D1 Data Loot ID and Associated Prefab
   m_EditorClassIdentifier: 
   dataPickup:
     keys: 000000000200000003000000
