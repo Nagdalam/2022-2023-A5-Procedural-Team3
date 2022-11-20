@@ -1,0 +1,7 @@
+ID;ENTITY_PATH;NAME;RARITY
+HEART_1;Assets/Scripts/LootTable/Loot/L_Heart_1.asset;Little Heart;COMMON
+COIN_1;Assets/Scripts/LootTable/Loot/L_Heart_1.asset;Copper;COMMON
+CHEST_1;Assets/Scripts/LootTable/Loot/L_Heart_1.asset;Platinum Chest;UNCOMMON
+SWORD_1;Assets/Scripts/LootTable/Loot/L_Heart_1.asset;Diamond Sword;LEGENDARY
+NONE;Assets/Scripts/LootTable/Loot/L_Heart_1.asset;NONE;COMMON
+KEY_1;Assets/Scripts/LootTable/Loot/L_Heart_1.asset;Rusty Key;COMMON

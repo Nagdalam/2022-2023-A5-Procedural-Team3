@@ -3,19 +3,56 @@ using UnityEditor;
 using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Globalization;
 
 public class GenerateLootID : MonoBehaviour
 {
     public TextAsset csvFile = null;
     private List<string> enumNames = new List<string>();
     private int nbRows = 0;
-    public DataPickup dataPickup = null;
+    /*public DataPickup dataPickup = null;*/
 
     public static GenerateLootID current;
 
     private void Awake()
     {
         current = this;
+    }
+
+    public void SetData()
+    {
+        string[] records = csvFile.text.Split('\n');
+        nbRows = records.Length;
+        Debug.Log(nbRows);
+        for (int i = 1; i < nbRows - 1; ++i)
+        {
+            // On cherche la loot table associée à notre entité depuis la colonne 0 (= ID field)
+            string lootIDField = records[i].Split(';')[0]; 
+            string prefabPathField = records[i].Split(';')[1];
+            string lootNameField = records[i].Split(';')[2];
+            string lootRarityField = records[i].Split(';')[3];
+
+            string path = "Assets/Scripts/LootTable/Loot/L_" + lootIDField + ".asset";
+
+            if (!File.Exists(path))
+            {
+                DataLoot newLoot = ScriptableObject.CreateInstance<DataLoot>();
+
+                // path has to start at "Assets"
+                AssetDatabase.CreateAsset(newLoot, path);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+
+                EditorUtility.FocusProjectWindow();
+                Selection.activeObject = newLoot;
+            }
+
+            var loot = (DataLoot) AssetDatabase.LoadAssetAtPath(path, typeof(DataLoot));
+            var prefab = (GameObject)AssetDatabase.LoadAssetAtPath(prefabPathField, typeof(GameObject));
+            loot.loot = prefab;
+            loot.lootData.lootName = lootNameField;
+            loot.lootData.lootRarity = (ERarity)System.Enum.Parse(typeof(ERarity), lootRarityField);
+        }
     }
 
     [MenuItem("Tools/Generate All Loot ID")]
@@ -41,26 +78,14 @@ public class GenerateLootID : MonoBehaviour
                 /*if (enumNames[i] == "")
                     continue;*/
 
-                streamWriter.WriteLine("\t" + enumNames[i] + ",");             
+                streamWriter.WriteLine("\t" + enumNames[i] + ",");
             }
             streamWriter.WriteLine("}");
         }
 
         AssetDatabase.Refresh();
 
-        for (int i = 0; i < enumNames.Count; ++i)
-        {
-            ELootID lootID = (ELootID)System.Enum.Parse(typeof(ELootID), enumNames[i]);
-            if (!dataPickup.dataPickupDictionary.ContainsKey(lootID))
-            {
-                Debug.Log(lootID);
-                dataPickup.dataPickupDictionary.Add(lootID, null);
-            }
-            else
-                Debug.Log($"contains : {lootID}");
-        }
-        Debug.Log(dataPickup.dataPickupDictionary.Count);
-        AssetDatabase.Refresh();
+        SetData();
     }
 }
 #endif

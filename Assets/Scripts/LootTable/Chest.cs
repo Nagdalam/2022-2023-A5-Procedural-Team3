@@ -11,6 +11,11 @@ public class Chest : Interactible
         TryGetComponent(out lootTable);
     }
 
+   /* void ILootable.SetData(DataPickupDictionary dicoLootTable)
+    {
+        throw new System.NotImplementedException();
+    }
+*/
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))

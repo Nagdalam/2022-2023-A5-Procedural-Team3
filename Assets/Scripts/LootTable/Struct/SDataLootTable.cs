@@ -3,9 +3,9 @@ public struct SDataLootTable
 {
     public ELootID lootID;
     public string lootName;
-    [UnityEngine.HideInInspector]
+    /*[UnityEngine.HideInInspector]*/
     public EType lootType;
-    [UnityEngine.HideInInspector]
+    /*[UnityEngine.HideInInspector]*/
     public ERarity lootRarity;
     public float lootDropRate;
 };
