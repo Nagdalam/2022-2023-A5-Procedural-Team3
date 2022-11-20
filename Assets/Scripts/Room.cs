@@ -10,7 +10,7 @@ public class Room : MonoBehaviour
     public List<Room.doorDirection> doors = new List<Room.doorDirection>();
     public roomType type;
 
-    public Room(doorDirection directionFirstDoor)
+    public Room()
     {
         //firstDoor = directionFirstDoor;
     }
