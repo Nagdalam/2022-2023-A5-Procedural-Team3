@@ -5,7 +5,6 @@ using UnityEngine;
 public class DungeonManager : MonoBehaviour
 {
     public static DungeonManager current;
-    public DataPickup dataPickup = null;
 
     public List<DataEntity> spawnable = new List<DataEntity>();
 

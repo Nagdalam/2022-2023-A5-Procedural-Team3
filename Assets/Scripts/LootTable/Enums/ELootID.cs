@@ -6,5 +6,4 @@ public enum ELootID
 	SWORD_1,
 	NONE,
 	KEY_1,
-	KEY_2,
 }

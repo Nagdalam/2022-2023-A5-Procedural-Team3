@@ -1,14 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System;
-using UnityEngine.UI;
-using System.ComponentModel;
-using System.Data;
-
-[Serializable]
-public class DataPickupDictionary : UDictionary<ELootID, SDataLootTable> { }
 
 public class LootTable : MonoBehaviour, ILootable
 {

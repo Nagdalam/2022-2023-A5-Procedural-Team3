@@ -20,9 +20,9 @@ public class GenerateEntitiesIDAndLootTable : MonoBehaviour
         current = this;
     }
 
-    public void  SetData(EEntities entity, DataPickupDictionary lootData)
+/*    public void  SetData(EEntities entity, DataPickupDictionary lootData)
     {
-        /*csvFile = Resources.Load<TextAsset>(pathCSVFile);*/
+        *//*csvFile = Resources.Load<TextAsset>(pathCSVFile);*//*
         string[] records = csvFile.text.Split('\n');
         string[] columnNames = records[0].Split(';');
 
@@ -33,7 +33,7 @@ public class GenerateEntitiesIDAndLootTable : MonoBehaviour
 
             if (field == entity.ToString())
             {
-                /*Debug.Log("Data Row Found");*/
+                *//*Debug.Log("Data Row Found");*//*
 
                 // Ajouter chaque Loot ID au dictionnaire
                 string lootField = records[i].Split(';')[3];
@@ -52,7 +52,7 @@ public class GenerateEntitiesIDAndLootTable : MonoBehaviour
                     dataLootTable.lootName = "";
                     dataLootTable.lootDropRate = float.Parse(dropRateFields[j], CultureInfo.InvariantCulture.NumberFormat);
 
-                    /*Debug.Log($"Loot ID : {lootIDs[j]} && Drop Rate {dataLootTable.lootDropRate}");*/
+                    *//*Debug.Log($"Loot ID : {lootIDs[j]} && Drop Rate {dataLootTable.lootDropRate}");*//*
 
                     lootData.Add(lootID, dataLootTable);
                 }
@@ -65,7 +65,7 @@ public class GenerateEntitiesIDAndLootTable : MonoBehaviour
     [MenuItem("Tools/Generate All Entities ID")]
     public  void GenerateEntitiesEnum()
     {
-        /*csvFile = Resources.Load<TextAsset>(pathCSVFile);*/
+        *//*csvFile = Resources.Load<TextAsset>(pathCSVFile);*//*
         enumNames.Clear();
         string[] records = csvFile.text.Split('\n');
         nbRows = records.Length;
@@ -88,6 +88,6 @@ public class GenerateEntitiesIDAndLootTable : MonoBehaviour
             streamWriter.WriteLine("}");
         }
         AssetDatabase.Refresh();
-    }
+    }*/
 }
 #endif

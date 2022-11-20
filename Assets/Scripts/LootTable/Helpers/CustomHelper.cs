@@ -4,7 +4,7 @@ using UnityEditor;
 [CustomEditor(typeof(GenerateEntitiesIDAndLootTable))]
 public class CustomHelper : Editor
 {
-    public override void OnInspectorGUI()
+   /* public override void OnInspectorGUI()
     {
         GenerateEntitiesIDAndLootTable generateEandLT = (GenerateEntitiesIDAndLootTable)target;
         if (GUILayout.Button("Generate Entities ID And Loot Table"))
@@ -13,7 +13,7 @@ public class CustomHelper : Editor
             AssetDatabase.Refresh();
         }
         DrawDefaultInspector();
-    }
+    }*/
 }
 
 [CustomEditor(typeof(GenerateLootID))]
