@@ -10,7 +10,8 @@ public class GenerateLootID : MonoBehaviour
     public TextAsset csvFile = null;
     private List<string> enumNames = new List<string>();
     private int nbRows = 0;
-    /*public DataPickup dataPickup = null;*/
+
+    /*[ReadOnly] public List<DataLoot> dataLoots = new List<DataLoot>();*/
 
     public static GenerateLootID current;
 
@@ -21,6 +22,8 @@ public class GenerateLootID : MonoBehaviour
 
     public void SetData()
     {
+        /*dataLoots = new List<DataLoot>();*/
+
         string[] records = csvFile.text.Split('\n');
         nbRows = records.Length;
         Debug.Log(nbRows);
@@ -48,6 +51,12 @@ public class GenerateLootID : MonoBehaviour
             }
 
             var loot = (DataLoot) AssetDatabase.LoadAssetAtPath(path, typeof(DataLoot));
+
+            /*if (current.dataLoots.Contains(loot))
+            {
+                current.dataLoots.Add(loot);
+            }*/
+
             var prefab = (GameObject)AssetDatabase.LoadAssetAtPath(prefabPathField, typeof(GameObject));
             loot.loot = prefab;
             loot.lootData.lootName = lootNameField;

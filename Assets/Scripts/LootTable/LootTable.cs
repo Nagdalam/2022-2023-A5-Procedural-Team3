@@ -31,8 +31,8 @@ public class LootTable : MonoBehaviour, ILootable
     {
         float totalWeight = dropRates.Sum();
         float rand = UnityEngine.Random.Range(0, totalWeight);
-        Debug.Log(totalWeight);
-        Debug.Log(rand);
+        /*Debug.Log(totalWeight);
+        Debug.Log(rand);*/
         float sumWeight = 0;
         int indexDrop = 0;
         float selectedDropRate = 0;
@@ -51,7 +51,12 @@ public class LootTable : MonoBehaviour, ILootable
 
         var keys = dataEntity.lootTable.Keys;
         Debug.Log($"Selected : {dataLoot[indexDrop].lootData.lootName}");
-        Instantiate(keys[indexDrop]);
+        var selectedLoot = keys[indexDrop].loot;
+
+        if (!selectedLoot)
+            return null;
+
+        Instantiate(selectedLoot);
 
         return null;
     }
