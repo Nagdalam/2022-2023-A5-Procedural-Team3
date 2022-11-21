@@ -29,6 +29,6 @@ public class DataEntity : ScriptableObject
 
     [Serializable]
     public class LootDictionary : UDictionary<DataLoot, int> { }
-    public class Key { public DataLoot loot; } // Loot Prefab to spawn
+    public class Key { public DataLoot lootPrefab; } // Loot Prefab to spawn
     public class Value { public int lootDropRate; } // Rate associated to the Loot Prefab
 }

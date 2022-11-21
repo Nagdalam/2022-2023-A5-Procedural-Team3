@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03278ef63137d7479a6754e0cf01cb8, type: 3}
   m_Name: L_CHEST_1
   m_EditorClassIdentifier: 
-  loot: {fileID: 0}
+  lootPrefab: {fileID: 7143052517036596304, guid: 11b8838a4c6ce77419cc01543c075555, type: 3}
   lootData:
-    lootName: 
-    lootRarity: 0
+    lootName: IIK
+    lootRarity: 1

@@ -51,7 +51,7 @@ public class LootTable : MonoBehaviour, ILootable
 
         var keys = dataEntity.lootTable.Keys;
         Debug.Log($"Selected : {dataLoot[indexDrop].lootData.lootName}");
-        var selectedLoot = keys[indexDrop].loot;
+        var selectedLoot = keys[indexDrop].lootPrefab;
 
         if (!selectedLoot)
             return null;

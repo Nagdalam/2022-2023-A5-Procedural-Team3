@@ -20,13 +20,13 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "L_", menuName = "ScriptableObjects/Data Loot", order = 1)]
 public class DataLoot : ScriptableObject
 {
-    public DataLoot(GameObject loot, SLootData lootData)
+    public DataLoot(GameObject lootPrefab, SLootData lootData)
     {
-        this.loot = loot;
+        this.lootPrefab = lootPrefab;
         this.lootData = lootData;
     }
 
     // Fields
-    public GameObject loot;
+    public GameObject lootPrefab;
     public SLootData lootData;
 }

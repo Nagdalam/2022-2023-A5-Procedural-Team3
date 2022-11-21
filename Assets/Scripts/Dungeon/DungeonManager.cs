@@ -14,7 +14,7 @@ public class DungeonManager : MonoBehaviour
     }
     void Start()
     {
-        /*dataPickup = GenerateLootID.current.dataPickup;*/
+        /*dataPickup = GenerateLoot.current.dataPickup;*/
     }
 
     // Update is called once per frame

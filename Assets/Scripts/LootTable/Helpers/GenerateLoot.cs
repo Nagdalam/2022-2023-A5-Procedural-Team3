@@ -5,15 +5,15 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Globalization;
 
-public class GenerateLootID : MonoBehaviour
+public class GenerateLoot : MonoBehaviour
 {
     public TextAsset csvFile = null;
     private List<string> enumNames = new List<string>();
     private int nbRows = 0;
 
-    /*[ReadOnly] public List<DataLoot> dataLoots = new List<DataLoot>();*/
+    public DataGeneralLoots dataGeneralLoots = null;
 
-    public static GenerateLootID current;
+    public static GenerateLoot current;
 
     private void Awake()
     {
@@ -26,10 +26,10 @@ public class GenerateLootID : MonoBehaviour
 
         string[] records = csvFile.text.Split('\n');
         nbRows = records.Length;
-        Debug.Log(nbRows);
+
         for (int i = 1; i < nbRows - 1; ++i)
         {
-            // On cherche la loot table associée à notre entité depuis la colonne 0 (= ID field)
+            // On cherche la lootPrefab table associée à notre entité depuis la colonne 0 (= ID field)
             string lootIDField = records[i].Split(';')[0]; 
             string prefabPathField = records[i].Split(';')[1];
             string lootNameField = records[i].Split(';')[2];
@@ -52,13 +52,14 @@ public class GenerateLootID : MonoBehaviour
 
             var loot = (DataLoot) AssetDatabase.LoadAssetAtPath(path, typeof(DataLoot));
 
-            /*if (current.dataLoots.Contains(loot))
+            if (!DataGeneralLoots.CurrentGeneralGameData.dataLoots.Contains(loot))
             {
-                current.dataLoots.Add(loot);
-            }*/
+                DataGeneralLoots.CurrentGeneralGameData.dataLoots.Add(loot);
+                Debug.Log(loot.lootData.lootName);
+            }
 
             var prefab = (GameObject)AssetDatabase.LoadAssetAtPath(prefabPathField, typeof(GameObject));
-            loot.loot = prefab;
+            loot.lootPrefab = prefab;
             loot.lootData.lootName = lootNameField;
             loot.lootData.lootRarity = (ERarity)System.Enum.Parse(typeof(ERarity), lootRarityField);
         }

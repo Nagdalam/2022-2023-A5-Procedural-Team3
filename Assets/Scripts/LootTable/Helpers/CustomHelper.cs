@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 [CustomEditor(typeof(GenerateEntitiesIDAndLootTable))]
 public class CustomHelper : Editor
@@ -16,12 +18,12 @@ public class CustomHelper : Editor
     }*/
 }
 
-[CustomEditor(typeof(GenerateLootID))]
+[CustomEditor(typeof(GenerateLoot))]
 public class CustomGenerateLootID : Editor
 {
     public override void OnInspectorGUI()
     {
-        GenerateLootID generateLootID = (GenerateLootID)target;
+        GenerateLoot generateLootID = (GenerateLoot)target;
         if (GUILayout.Button("Generate Loot ID"))
         {
             generateLootID.GenerateLootTableEnum();

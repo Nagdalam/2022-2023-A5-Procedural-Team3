@@ -28,7 +28,7 @@ public class GenerateEntitiesIDAndLootTable : MonoBehaviour
 
         for (int i = 1; i < columnNames.Length; ++i)
         {
-            // On cherche la loot table associée à notre entité depuis la colonne 0 (= ID field)
+            // On cherche la lootPrefab table associée à notre entité depuis la colonne 0 (= ID field)
             string field = records[i].Split(';')[0]; // ID field
 
             if (field == entity.ToString())

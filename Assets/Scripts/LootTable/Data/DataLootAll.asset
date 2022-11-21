@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Data Generate Enum
-  m_EditorClassIdentifier: Assembly-CSharp::DataGenerateEnum
-  enumName: MyEnum
-  filePath: Assets/Scripts/Enums/MyEnum
+  m_Script: {fileID: 11500000, guid: e270f12421fb7b94a8bf35c05d862e71, type: 3}
+  m_Name: DataLootAll
+  m_EditorClassIdentifier: 
+  dataLoots: []
