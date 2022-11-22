@@ -157,6 +157,7 @@ MonoBehaviour:
   testEnd: {fileID: 5103176472131712000, guid: 22f60bf54d05ffd4aae378336f0a5359, type: 3}
   layoutWidth: 15
   layoutHeight: 15
+  defaultRoom: {fileID: 3558366831715538505, guid: 73533378c15c6084baab85e07509bda6, type: 3}
 --- !u!4 &20105511
 Transform:
   m_ObjectHideFlags: 0

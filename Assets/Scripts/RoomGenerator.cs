@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
 {
-    public GameObject testEmpty;
-    public GameObject testStart;
-    public GameObject testEnd;
     public int layoutWidth;
     public int layoutHeight;
     public Room[,] roomLayout;
+    public GameObject defaultRoom;
 
     void Start()
     {
@@ -118,12 +116,14 @@ public class RoomGenerator : MonoBehaviour
                         }
                         break;
                 }
+                if (direction.Count <= 0)
+                {
+                    roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
+                    foundSuitableNeighbour = true;
+                    break;
+                }
             }
-            if (direction.Count <= 0)
-            {
-                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
-                break;
-            }
+           
         }
         for (int i = 0; i < layoutWidth; i++)
         {
@@ -149,8 +149,11 @@ public class RoomGenerator : MonoBehaviour
                     {
                         roomLayout[i, j].doors.Add(Room.doorDirection.Right);
                     }
+                    //Debug.Log("Generate room");
+                    GameObject newRoom = defaultRoom;
+                    newRoom.GetComponent<RoomContent>().myRoom = roomLayout[i, j];
+                    Instantiate(newRoom, new Vector3(i, j, 0), Quaternion.identity);
                 }
-
 
             }
         }
