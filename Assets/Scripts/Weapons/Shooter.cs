@@ -4,15 +4,17 @@ public class Shooter : MonoBehaviour
 {
     public GameObject prefabBullet;
     public Transform bullet;
+    public PlayerWeapons currentWeapon;
+
+    private PlayerWeapons lastCurrentWeapon;
+
     //Stat
-    private float fireDelayPercent;
+    private float fireRatePercent;
     private uint damageBulletPercent;
     private float areaBulletPercent;
-    private float spreadBulletPercent;
     private float speedBulletPercent;
-    private int amountBullet;
 
-    private float fireDelayResult;
+    private float fireRateResult;
     private uint damageBulletResult;
     private float areaBulletResult;
     private float spreadBulletResult;
@@ -25,7 +27,6 @@ public class Shooter : MonoBehaviour
     private Transform bulletsParent;
     private float lastShootTime;
 
-    public PlayerWeapons currentWeapon;
 
     private InflictDamageOnTrigger2D setDamageBullet;
 
@@ -38,6 +39,16 @@ public class Shooter : MonoBehaviour
     private void Start()
     {
         lastShootTime = currentWeapon.weaponFireRate * -1;
+
+        lastCurrentWeapon = currentWeapon;
+
+        fireRateResult = currentWeapon.weaponFireRate;
+
+        damageBulletResult = currentWeapon.weaponDamage;
+
+        areaBulletResult = currentWeapon.weaponAreaBullet;
+
+        speedBulletResult = currentWeapon.weaponSpeedBullet;
     }
 
     public void StartShooting()
@@ -50,27 +61,82 @@ public class Shooter : MonoBehaviour
     {
         if (isShooting)
             TryToShoot();
+        if(currentWeapon != lastCurrentWeapon)
+            SwitchWeapon();
     }
 
     public void StopShooting()
     {
         isShooting = false;
     }
-    
-    private void SetStat()
+    public void SetRandomPercent()
     {
-        fireDelayResult = currentWeapon.weaponFireRate * fireDelayPercent;
-        damageBulletResult = currentWeapon.weaponDamage * damageBulletPercent;
-        areaBulletResult = currentWeapon.weaponAreaBullet * areaBulletPercent;
-        spreadBulletResult = currentWeapon.weaponSpreadBullet * spreadBulletPercent;
-        speedBulletResult = currentWeapon.weaponSpeedBullet * speedBulletPercent;
-        amountBulletResult =  currentWeapon.weaponAmountBullet + amountBullet;
+        int i = 0;
+
+        i = Random.Range(1, 5);
+
+        switch (i)
+        {
+            case 1:
+                fireRatePercent += 25;
+
+                SetAllStat();
+                break;
+            case 2:
+                damageBulletPercent += 25;
+
+                SetAllStat();
+                break;
+            case 3:
+                areaBulletPercent += 25;
+
+                SetAllStat();
+                break;
+            case 4:
+                speedBulletPercent += 25;
+
+                SetAllStat();
+                break;
+
+        }
+    }
+    public void SetAllPercent()
+    {
+        fireRatePercent += 50;
+
+        damageBulletPercent += 50;
+
+        areaBulletPercent += 50;
+
+        speedBulletPercent += 50;
+
+        SetAllStat();
+    }
+
+    private void SetAllStat()
+    {
+        fireRateResult = currentWeapon.weaponFireRate+(currentWeapon.weaponFireRate/fireRatePercent);
+
+        damageBulletResult = currentWeapon.weaponDamage+(currentWeapon.weaponDamage/damageBulletPercent);
+
+        areaBulletResult = currentWeapon.weaponAreaBullet+(currentWeapon.weaponAreaBullet/areaBulletPercent);
+
+        speedBulletResult = currentWeapon.weaponSpeedBullet+(currentWeapon.weaponSpeedBullet/speedBulletPercent);
+    }
+
+    public void SwitchWeapon()
+    {
+        if (currentWeapon != null)
+        {
+            SetAllStat();
+            lastCurrentWeapon = currentWeapon;
+        }
     }
 
     //shoot set bullet and damagebullet
     private void TryToShoot()
     {
-        if (Time.time < lastShootTime + currentWeapon.weaponFireRate) return;
+        if (Time.time < lastShootTime + fireRateResult) return;
         for(int i = 0; i < currentWeapon.weaponAmountBullet; i++)
         {
             var bulletPosition = transform.position;
@@ -78,9 +144,9 @@ public class Shooter : MonoBehaviour
             newBullet.up = transform.up;
             newBullet.Rotate(0, 0, Random.Range(-currentWeapon.weaponSpreadBullet, currentWeapon.weaponSpreadBullet));
 
-            bullet.transform.localScale = new Vector3(currentWeapon.weaponAreaBullet, currentWeapon.weaponAreaBullet, 1);
-            bullet.GetComponentInChildren<Rigidbody2DMovement>().speed = currentWeapon.weaponSpeedBullet;
-            setDamageBullet.damageOnTouch = currentWeapon.weaponDamage;
+            bullet.transform.localScale = new Vector3(areaBulletResult, areaBulletResult, 1);
+            bullet.GetComponentInChildren<Rigidbody2DMovement>().speed = speedBulletResult;
+            setDamageBullet.damageOnTouch = damageBulletResult;
         }
         lastShootTime = Time.time;
     }
