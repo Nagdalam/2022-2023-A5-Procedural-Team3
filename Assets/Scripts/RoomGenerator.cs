@@ -12,6 +12,8 @@ public class RoomGenerator : MonoBehaviour
     public int layoutHeight;
     public Room[,] roomLayout;
 
+    public GameObject spawnerPrefab;
+
     void Start()
     {
         roomLayout = new Room[layoutHeight, layoutWidth];
@@ -149,9 +151,9 @@ public class RoomGenerator : MonoBehaviour
                     {
                         roomLayout[i, j].doors.Add(Room.doorDirection.Right);
                     }
+                    //GameObject item = Instantiate(spawnerPrefab,new Vector3(i,j,0),Quaternion.identity,this.transform);
+                    //item.GetComponent<ItemSpawner>().SetRoomScript(roomLayout[i,j]);
                 }
-
-
             }
         }
     }
