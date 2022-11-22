@@ -152,9 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b656b45832acf8f47b83cb8243edab7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testEmpty: {fileID: 8883669091241428699, guid: 554edd5113cddb04586283d3143f2b17, type: 3}
-  layoutWidth: 6
-  layoutHeight: 6
+  testEmpty: {fileID: 3558366831715538505, guid: 73533378c15c6084baab85e07509bda6, type: 3}
+  testStart: {fileID: 1335629162687397092, guid: 0d09c41bcbd77cd499a9eb03e51def74, type: 3}
+  testEnd: {fileID: 5103176472131712000, guid: 22f60bf54d05ffd4aae378336f0a5359, type: 3}
+  layoutWidth: 15
+  layoutHeight: 15
 --- !u!4 &20105511
 Transform:
   m_ObjectHideFlags: 0

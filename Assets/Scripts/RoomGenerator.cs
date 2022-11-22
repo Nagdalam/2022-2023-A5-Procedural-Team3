@@ -6,24 +6,23 @@ using UnityEngine;
 public class RoomGenerator : MonoBehaviour
 {
     public GameObject testEmpty;
+    public GameObject testStart;
+    public GameObject testEnd;
     public int layoutWidth;
     public int layoutHeight;
     public Room[,] roomLayout;
-    int currentX;
-    int currentY;
 
-  
     void Start()
     {
         roomLayout = new Room[layoutHeight, layoutWidth];
-        roomLayout[layoutHeight / 2, layoutWidth / 2] = new Room();
-        Instantiate(testEmpty, new Vector3(layoutHeight / 2, layoutWidth / 2, 0), Quaternion.identity);
+        roomLayout[2, 2] = new Room(Room.roomType.Boss, 0);
+        //Instantiate(testStart, new Vector3(10, 10, 0), Quaternion.identity);
         //Génération vers Spawn
-        int r = UnityEngine.Random.Range(3, 11);
-        TracePath(new Vector2(layoutHeight / 2, layoutWidth / 2), r, Room.roomType.Spawn);
+        int r = 5;
+        TracePath(new Vector2(2, 2), r, Room.roomType.Spawn, 1);
 
     }
-    void TracePath(Vector2 origin, int length, Room.roomType lastRoomType)
+    void TracePath(Vector2 origin, int length, Room.roomType lastRoomType, int pathID)
     {
         for (int i = 0; i < length; i++)
         {
@@ -39,15 +38,17 @@ public class RoomGenerator : MonoBehaviour
                 switch (directionChosen)
                 {
                     case 0:
-                        if (origin.x - 1 >= 0 && (roomLayout[(int)origin.y, (int)origin.x - 1]) == null)
+                        if (origin.x - 1 >= 0 && (roomLayout[(int)origin.x - 1, (int)origin.y]) == null)
                         {
                             origin.x = origin.x - 1;
-                            roomLayout[(int)origin.y, (int)origin.x] = new Room();
-                            Instantiate(testEmpty, new Vector3((int)origin.y, (int)origin.x, 0), Quaternion.identity);
+                            roomLayout[(int)origin.x, (int)origin.y] = new Room(Room.roomType.Regular, pathID);
                             foundSuitableNeighbour = true;
                             if (i == length - 1)
                             {
-                                roomLayout[(int)origin.y, (int)origin.x].type = lastRoomType;
+                                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
+                            }
+                            else
+                            {
                             }
                         }
                         else
@@ -57,15 +58,17 @@ public class RoomGenerator : MonoBehaviour
                         break;
 
                     case 1:
-                        if (origin.x + 1 < layoutWidth && roomLayout[(int)origin.y, (int)origin.x + 1] == null)
+                        if (origin.x + 1 < layoutWidth - 1 && roomLayout[(int)origin.x + 1, (int)origin.y] == null)
                         {
                             origin.x = origin.x + 1;
-                            roomLayout[(int)origin.y, (int)origin.x] = new Room();
-                            Instantiate(testEmpty, new Vector3((int)origin.y, (int)origin.x, 0), Quaternion.identity);
+                            roomLayout[(int)origin.x, (int)origin.y] = new Room(Room.roomType.Regular, pathID);
                             foundSuitableNeighbour = true;
                             if (i == length - 1)
                             {
-                                roomLayout[(int)origin.y, (int)origin.x].type = lastRoomType;
+                                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
+                            }
+                            else
+                            {
                             }
                         }
                         else
@@ -75,15 +78,17 @@ public class RoomGenerator : MonoBehaviour
                         break;
 
                     case 2:
-                        if (origin.y - 1 >= 0 && roomLayout[(int)origin.y - 1, (int)origin.x] == null)
+                        if (origin.y - 1 >= 0 && roomLayout[(int)origin.x, (int)origin.y - 1] == null)
                         {
                             origin.y = origin.y - 1;
-                            roomLayout[(int)origin.y, (int)origin.x] = new Room();
-                            Instantiate(testEmpty, new Vector3((int)origin.y, (int)origin.x, 0), Quaternion.identity);
+                            roomLayout[(int)origin.x, (int)origin.y] = new Room(Room.roomType.Regular, pathID);
                             foundSuitableNeighbour = true;
                             if (i == length - 1)
                             {
-                                roomLayout[(int)origin.y, (int)origin.x].type = lastRoomType;
+                                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
+                            }
+                            else
+                            {
                             }
                         }
                         else
@@ -93,15 +98,18 @@ public class RoomGenerator : MonoBehaviour
                         break;
 
                     case 3:
-                        if (origin.y + 1 < layoutHeight && roomLayout[(int)origin.y + 1, (int)origin.x] == null)
+                        if (origin.y + 1 < layoutHeight - 1 && roomLayout[(int)origin.x, (int)origin.y + 1] == null)
                         {
                             origin.y = origin.y + 1;
-                            roomLayout[(int)origin.y, (int)origin.x] = new Room();
-                            Instantiate(testEmpty, new Vector3((int)origin.y, (int)origin.x, 0), Quaternion.identity);
+                            roomLayout[(int)origin.x, (int)origin.y + 1] = new Room(Room.roomType.Regular, pathID);
                             foundSuitableNeighbour = true;
                             if (i == length - 1)
                             {
-                                roomLayout[(int)origin.y, (int)origin.x].type = lastRoomType;
+                                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
+                            }
+                            else
+                            {
+
                             }
                         }
                         else
@@ -113,8 +121,37 @@ public class RoomGenerator : MonoBehaviour
             }
             if (direction.Count <= 0)
             {
-                roomLayout[(int)origin.y, (int)origin.x].type = lastRoomType;
+                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
                 break;
+            }
+        }
+        for (int i = 0; i < layoutWidth; i++)
+        {
+
+            for (int j = 0; j < layoutHeight; j++)
+            {
+
+                if (roomLayout[i, j] != null)
+                {
+                    if (i - 1 >= 0 && roomLayout[i - 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i - 1, j].pathID || roomLayout[i - 1, j].pathID == 0))
+                    {
+                        roomLayout[i, j].doors.Add(Room.doorDirection.Left);
+                    }
+                    else if (i + 1 < layoutWidth - 1 && roomLayout[i + 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i + 1, j].pathID || roomLayout[i + 1, j].pathID == 0))
+                    {
+                        roomLayout[i, j].doors.Add(Room.doorDirection.Right);
+                    }
+                    else if (j >= 0 && roomLayout[i, j - 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j - 1].pathID || roomLayout[i, j - 1].pathID == 0))
+                    {
+                        roomLayout[i, j].doors.Add(Room.doorDirection.Left);
+                    }
+                    else if (j + 1 < layoutHeight - 1 && roomLayout[i, j + 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j + 1].pathID || roomLayout[i, j + 1].pathID == 0))
+                    {
+                        roomLayout[i, j].doors.Add(Room.doorDirection.Right);
+                    }
+                }
+
+
             }
         }
     }
