@@ -10,14 +10,29 @@ public class RoomGenerator : MonoBehaviour
     public Room[,] roomLayout;
     public GameObject defaultRoom;
     public Vector2 firstRoom;
+    private List<Room.roomType> typeProbList = new List<Room.roomType>();
+    public int regularProb, minibossProb, recovProb;
+    public int pathLength;
     void Start()
     {
         roomLayout = new Room[layoutHeight, layoutWidth];
         roomLayout[(int)firstRoom.x, (int)firstRoom.y] = new Room(Room.roomType.Boss, 0);
+        for (int x = 0; x < regularProb; x++)
+        {
+            typeProbList.Add(Room.roomType.Regular);
+        }
+        for (int y = 0; y < minibossProb; y++)
+        {
+            typeProbList.Add(Room.roomType.Miniboss);
+        }
+        for (int z = 0; z < recovProb; z++)
+        {
+            typeProbList.Add(Room.roomType.Miniboss);
+        }
         //Instantiate(testStart, new Vector3(10, 10, 0), Quaternion.identity);
         //G�n�ration vers Spawn
-        int r = 5;
-        TracePath(firstRoom, r, Room.roomType.Spawn, 1);
+
+        TracePath(firstRoom, pathLength, Room.roomType.Spawn, 1);
         for (int i = 0; i < layoutWidth; i++)
         {
 
@@ -43,9 +58,8 @@ public class RoomGenerator : MonoBehaviour
                     //    roomLayout[i, j].doors.Add(Room.doorDirection.Right);
                     //}
                     //Debug.Log("Generate room");
-                    GameObject newRoom = defaultRoom;
+                    GameObject newRoom = Instantiate(defaultRoom, new Vector3(i, j, 0), Quaternion.identity);
                     newRoom.GetComponent<RoomContent>().myRoom = roomLayout[i, j];
-                    Instantiate(newRoom, new Vector3(i, j, 0), Quaternion.identity);
                 }
 
             }
@@ -71,14 +85,14 @@ public class RoomGenerator : MonoBehaviour
                         if (origin.x - 1 >= 0 && (roomLayout[(int)origin.x - 1, (int)origin.y]) == null)
                         {
                             origin.x = origin.x - 1;
-                            roomLayout[(int)origin.x, (int)origin.y] = new Room(Room.roomType.Regular, pathID);
                             foundSuitableNeighbour = true;
                             if (i == length - 1)
                             {
-                                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
+                                roomLayout[(int)origin.x, (int)origin.y] = new Room(lastRoomType, pathID);
                             }
                             else
                             {
+                                roomLayout[(int)origin.x, (int)origin.y] = new Room(GenerateRandomRoomType(), pathID);
                             }
                         }
                         else
@@ -91,14 +105,14 @@ public class RoomGenerator : MonoBehaviour
                         if (origin.x + 1 < layoutWidth - 1 && roomLayout[(int)origin.x + 1, (int)origin.y] == null)
                         {
                             origin.x = origin.x + 1;
-                            roomLayout[(int)origin.x, (int)origin.y] = new Room(Room.roomType.Regular, pathID);
                             foundSuitableNeighbour = true;
                             if (i == length - 1)
                             {
-                                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
+                                roomLayout[(int)origin.x, (int)origin.y] = new Room(lastRoomType, pathID);
                             }
                             else
                             {
+                                roomLayout[(int)origin.x, (int)origin.y] = new Room(GenerateRandomRoomType(), pathID);
                             }
                         }
                         else
@@ -111,14 +125,14 @@ public class RoomGenerator : MonoBehaviour
                         if (origin.y - 1 >= 0 && roomLayout[(int)origin.x, (int)origin.y - 1] == null)
                         {
                             origin.y = origin.y - 1;
-                            roomLayout[(int)origin.x, (int)origin.y] = new Room(Room.roomType.Regular, pathID);
                             foundSuitableNeighbour = true;
                             if (i == length - 1)
                             {
-                                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
+                                roomLayout[(int)origin.x, (int)origin.y] = new Room(lastRoomType, pathID);
                             }
                             else
                             {
+                                roomLayout[(int)origin.x, (int)origin.y] = new Room(GenerateRandomRoomType(), pathID);
                             }
                         }
                         else
@@ -131,15 +145,15 @@ public class RoomGenerator : MonoBehaviour
                         if (origin.y + 1 < layoutHeight - 1 && roomLayout[(int)origin.x, (int)origin.y + 1] == null)
                         {
                             origin.y = origin.y + 1;
-                            roomLayout[(int)origin.x, (int)origin.y + 1] = new Room(Room.roomType.Regular, pathID);
+
                             foundSuitableNeighbour = true;
                             if (i == length - 1)
                             {
-                                roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
+                                roomLayout[(int)origin.x, (int)origin.y] = new Room(lastRoomType, pathID);
                             }
                             else
                             {
-
+                                roomLayout[(int)origin.x, (int)origin.y] = new Room(GenerateRandomRoomType(), pathID);
                             }
                         }
                         else
@@ -158,5 +172,28 @@ public class RoomGenerator : MonoBehaviour
 
         }
 
+        Room.roomType GenerateRandomRoomType()
+        {
+            int r = UnityEngine.Random.Range(0, typeProbList.Count);
+            if (typeProbList[r] == Room.roomType.Regular)
+            {
+                typeProbList.Add(Room.roomType.Miniboss);
+                typeProbList.Add(Room.roomType.Recovery);
+                return Room.roomType.Regular;
+            }
+            else if (typeProbList[r] == Room.roomType.Recovery)
+            {
+                typeProbList.Add(Room.roomType.Miniboss);
+                typeProbList.Remove(Room.roomType.Recovery);
+                return Room.roomType.Recovery;
+            }
+            else if (typeProbList[r] == Room.roomType.Miniboss)
+            {
+                typeProbList.Add(Room.roomType.Recovery);
+                typeProbList.Remove(Room.roomType.Miniboss);
+                return Room.roomType.Miniboss;
+            }
+            return Room.roomType.Empty;
+        }
     }
 }
