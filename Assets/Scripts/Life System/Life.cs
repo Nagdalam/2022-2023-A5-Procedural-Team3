@@ -6,7 +6,7 @@ public class Life : MonoBehaviour
 {
     public bool isInvincible;
     public uint startLife;
-    public UnityEvent<uint> onDamageTaken;
+    public UnityEvent<uint> onHealthChange;
 
     public uint currentLife { get; private set; }
     public IEnumerator onDie;
@@ -24,9 +24,20 @@ public class Life : MonoBehaviour
         if (damage > currentLife)
             damage = currentLife;
         currentLife -= damage;
-        onDamageTaken.Invoke(currentLife);
+        onHealthChange.Invoke(currentLife);
         if (currentLife == 0)
             Die();
+    }
+
+    public void Heal(uint healAmount)
+    {
+        if (!isAlive || currentLife >= startLife) return;
+        if (healAmount > currentLife)
+            healAmount = currentLife;
+
+        currentLife += healAmount;
+        Mathf.Clamp(currentLife, 0, startLife);
+        onHealthChange?.Invoke(currentLife);
     }
 
     private void Die()
@@ -39,6 +50,14 @@ public class Life : MonoBehaviour
             if (onDie != null)
                 yield return StartCoroutine(onDie);
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            TakeDamage(1);
         }
     }
 }

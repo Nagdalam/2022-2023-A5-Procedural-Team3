@@ -7,4 +7,5 @@ public enum ELootID
 	NONE,
 	KEY_1,
 	KEY_2,
+	LIFE_POINT_1,
 }
