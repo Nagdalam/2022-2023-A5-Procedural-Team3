@@ -11,4 +11,6 @@ public enum ELootID
 	PISTOL_1,
 	MACHINE_GUN_1,
 	SHOT_GUN_1,
+	BONUS_ARMOR_1,
+	BONUS_HEALTH_1,
 }

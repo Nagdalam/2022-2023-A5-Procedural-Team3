@@ -10,3 +10,5 @@ LIFE_POINT_1;Assets/Prefabs/Pickups/LifePoint.prefab;Minor Heal;COMMON
 PISTOL_1;Assets/Scripts/Weapons/Pistol.prefab;Pistol;COMMON
 MACHINE_GUN_1;Assets/Scripts/Weapons/MachineGun.prefab;Machine Gun;COMMON
 SHOT_GUN_1;Assets/Scripts/Weapons/ShotGun.prefab;Shot Gun;COMMON
+BONUS_ARMOR_1;Assets/Prefabs/Pickups/BonusArmor.prefab;Shield;COMMON
+BONUS_HEALTH_1;Assets/Prefabs/Pickups/BonusHealth.prefab;Exceed Life;COMMON

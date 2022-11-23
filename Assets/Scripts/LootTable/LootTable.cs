@@ -21,13 +21,13 @@ public class LootTable : MonoBehaviour, ILootable
 
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.V))
         {
-            RandLoot();
-        }*/
+            LootManager.current.RandLoot(this);
+        }
     }
 
-    public Pickup RandLoot()
+    public void RandLoot()
     {
         float totalWeight = dropRates.Sum();
         float rand = UnityEngine.Random.Range(0, totalWeight);
@@ -35,7 +35,6 @@ public class LootTable : MonoBehaviour, ILootable
         Debug.Log(rand);*/
         float sumWeight = 0;
         int indexDrop = 0;
-        float selectedDropRate = 0;
 
         // On sélectionne le premier objet tiré au sort en fonction du poids total
         for (int i = 0; i < totalLoots; ++i)
@@ -44,7 +43,6 @@ public class LootTable : MonoBehaviour, ILootable
             if (rand <= sumWeight)
             {
                 indexDrop = i;
-                selectedDropRate = dropRates[i];
                 break;
             }
         }
@@ -54,11 +52,9 @@ public class LootTable : MonoBehaviour, ILootable
         var selectedLoot = keys[indexDrop].lootPrefab;
 
         if (!selectedLoot)
-            return null;
+            return;
 
         Instantiate(selectedLoot);
-
-        return null;
     }
 
     void ILootable.SetData(DataEntity dataEntity)

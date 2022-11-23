@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,11 +9,21 @@ public class Life : MonoBehaviour
     public uint startLife;
     public UnityEvent<uint> onHealthChange;
 
+    public delegate void Void();
+    public Void onDeath;
+
+    public delegate void CIEnumerator(IEnumerator routine);
+    public CIEnumerator onDeathIE;
+
     public uint currentLife { get; private set; }
     public IEnumerator onDie;
 
     private bool isAlive = true;
 
+    private void Awake()
+    {
+        /*LootManager.current.randLootAction(TryGetComponent(out LootTable lt));*/
+    }
     private void Start()
     {
         currentLife = startLife;
@@ -46,6 +57,13 @@ public class Life : MonoBehaviour
 
         IEnumerator DieCoroutine()
         {
+            if (TryGetComponent(out LootTable lootTable))
+            {
+                LootManager.current.ChangePercentage(LootManager.current.dropBar.amountPercentageIncrease);
+                LootManager.current.RandLoot(lootTable);
+            }
+
+            onDeath?.Invoke();
             isAlive = false;
             if (onDie != null)
                 yield return StartCoroutine(onDie);
