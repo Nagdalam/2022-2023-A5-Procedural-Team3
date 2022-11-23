@@ -9,16 +9,26 @@ public class Shooter : MonoBehaviour
     private PlayerWeapons lastCurrentWeapon;
 
     //Stat
+    [SerializeField]
     private float fireRatePercent;
+    [SerializeField]
     private uint damageBulletPercent;
+    [SerializeField]
     private float areaBulletPercent;
+    [SerializeField]
     private float speedBulletPercent;
 
+    [SerializeField]
     private float fireRateResult;
+    [SerializeField]
     private uint damageBulletResult;
+    [SerializeField]
     private float areaBulletResult;
+    [SerializeField]
     private float spreadBulletResult;
+    [SerializeField]
     private float speedBulletResult;
+    [SerializeField]
     private int amountBulletResult;
 
 
@@ -49,6 +59,8 @@ public class Shooter : MonoBehaviour
         areaBulletResult = currentWeapon.weaponAreaBullet;
 
         speedBulletResult = currentWeapon.weaponSpeedBullet;
+
+        SetAllStat();
     }
 
     public void StartShooting()
@@ -115,13 +127,25 @@ public class Shooter : MonoBehaviour
 
     private void SetAllStat()
     {
-        fireRateResult = currentWeapon.weaponFireRate+(currentWeapon.weaponFireRate/fireRatePercent);
+        if (fireRatePercent!=0) 
+        {
+            fireRateResult = currentWeapon.weaponFireRate - (currentWeapon.weaponFireRate / fireRatePercent);
+        }
 
-        damageBulletResult = currentWeapon.weaponDamage+(currentWeapon.weaponDamage/damageBulletPercent);
+        if (damageBulletPercent != 0)
+        {
+            damageBulletResult = currentWeapon.weaponDamage + (currentWeapon.weaponDamage / damageBulletPercent);
+        }
 
-        areaBulletResult = currentWeapon.weaponAreaBullet+(currentWeapon.weaponAreaBullet/areaBulletPercent);
+        if (areaBulletPercent != 0)
+        {
+            areaBulletResult = currentWeapon.weaponAreaBullet+(currentWeapon.weaponAreaBullet/areaBulletPercent);
+        }
 
-        speedBulletResult = currentWeapon.weaponSpeedBullet+(currentWeapon.weaponSpeedBullet/speedBulletPercent);
+        if (speedBulletPercent != 0)
+        {
+            speedBulletResult = currentWeapon.weaponSpeedBullet+(currentWeapon.weaponSpeedBullet/speedBulletPercent);
+        }
     }
 
     public void SwitchWeapon()
