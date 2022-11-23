@@ -8,4 +8,7 @@ public enum ELootID
 	KEY_1,
 	KEY_2,
 	LIFE_POINT_1,
+	PISTOL_1,
+	MACHINE_GUN_1,
+	SHOT_GUN_1,
 }

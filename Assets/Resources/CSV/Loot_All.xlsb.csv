@@ -7,3 +7,6 @@ NONE;Assets/Prefabs/Pickups/Key.prefab;NONE;COMMON
 KEY_1;Assets/Prefabs/Pickups/Key.prefab;Rusty Key;COMMON
 KEY_2;Assets/Prefabs/Pickups/Key.prefab;Clean Key;RARE
 LIFE_POINT_1;Assets/Prefabs/Pickups/LifePoint.prefab;Minor Heal;COMMON
+PISTOL_1;Assets/Scripts/Weapons/Pistol.prefab;Pistol;COMMON
+MACHINE_GUN_1;Assets/Scripts/Weapons/MachineGun.prefab;Machine Gun;COMMON
+SHOT_GUN_1;Assets/Scripts/Weapons/ShotGun.prefab;Shot Gun;COMMON
