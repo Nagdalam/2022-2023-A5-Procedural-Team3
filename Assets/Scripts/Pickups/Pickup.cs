@@ -12,7 +12,7 @@ public abstract class Pickup : MonoBehaviour
         ownerInventory.AddPickup(this);
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    protected virtual void OnTriggerEnter2D(Collider2D col)
     {
         if (col.TryGetComponent(out Inventory colliderInventory))
         {
