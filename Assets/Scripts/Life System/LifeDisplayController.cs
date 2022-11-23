@@ -15,7 +15,7 @@ public class LifeDisplayController : MonoBehaviour
 
         var playerLife = FindObjectOfType<PlayerController>().GetComponent<Life>();
         ChangeHeartsCount(playerLife.startLife);
-        playerLife.onDamageTaken.AddListener(ChangeHeartsCount);
+        playerLife.onHealthChange.AddListener(ChangeHeartsCount);
     }
 
     private void ChangeHeartsCount(uint newCount)

@@ -16,10 +16,10 @@ public class InvincibleOnHit : MonoBehaviour
 
     private void Start()
     {
-        lifeComponent.onDamageTaken.AddListener(OnDamageTaken);
+        lifeComponent.onHealthChange.AddListener(onHealthChange);
     }
 
-    private void OnDamageTaken(uint lifePoint)
+    private void onHealthChange(uint lifePoint)
     {
         lifeComponent.isInvincible = true;
         StartCoroutine(Invincibility());
