@@ -160,6 +160,7 @@ MonoBehaviour:
   minibossProb: 0
   recovProb: 0
   pathLength: 8
+  roomDimension: {x: 20, y: 10}
 --- !u!4 &20105511
 Transform:
   m_ObjectHideFlags: 0
