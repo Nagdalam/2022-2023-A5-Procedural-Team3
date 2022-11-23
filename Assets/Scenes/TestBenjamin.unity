@@ -152,12 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b656b45832acf8f47b83cb8243edab7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testEmpty: {fileID: 3558366831715538505, guid: 73533378c15c6084baab85e07509bda6, type: 3}
-  testStart: {fileID: 1335629162687397092, guid: 0d09c41bcbd77cd499a9eb03e51def74, type: 3}
-  testEnd: {fileID: 5103176472131712000, guid: 22f60bf54d05ffd4aae378336f0a5359, type: 3}
   layoutWidth: 15
   layoutHeight: 15
   defaultRoom: {fileID: 3558366831715538505, guid: 73533378c15c6084baab85e07509bda6, type: 3}
+  firstRoom: {x: 8, y: 8}
+  regularProb: 5
+  minibossProb: 0
+  recovProb: 0
+  pathLength: 8
 --- !u!4 &20105511
 Transform:
   m_ObjectHideFlags: 0
@@ -184,6 +186,7 @@ GameObject:
   - component: {fileID: 1398506981}
   - component: {fileID: 1398506980}
   - component: {fileID: 1398506979}
+  - component: {fileID: 1398506982}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -257,3 +260,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1398506982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398506978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
