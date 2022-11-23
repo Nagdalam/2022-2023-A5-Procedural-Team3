@@ -6,3 +6,4 @@ SWORD_1;Assets/Prefabs/Pickups/Key.prefab;Diamond Sword;LEGENDARY
 NONE;Assets/Prefabs/Pickups/Key.prefab;NONE;COMMON
 KEY_1;Assets/Prefabs/Pickups/Key.prefab;Rusty Key;COMMON
 KEY_2;Assets/Prefabs/Pickups/Key.prefab;Clean Key;RARE
+LIFE_POINT_1;Assets/Prefabs/Pickups/LifePoint.prefab;Minor Heal;COMMON

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -63,7 +64,12 @@ public class LockedDoor : DoorController
 
     protected override void Awake()
     {
-        base.Awake();
-        connectedLockedDoor = connectedDoor as LockedDoor;
+        //base.Awake();
+        //connectedLockedDoor = connectedDoor as LockedDoor;
+    }
+
+    public void SetConnectedDoor(LockedDoor door)
+    {
+        connectedLockedDoor = door;
     }
 }

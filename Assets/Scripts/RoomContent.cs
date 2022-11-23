@@ -7,6 +7,9 @@ public class RoomContent : MonoBehaviour
     [SerializeField] public Room myRoom;
     public SpriteRenderer mySprite;
     public GameObject doorLeft, doorRight, doorUp, doorDown;
+
+    private ItemSpawner spawner;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,12 +57,15 @@ public class RoomContent : MonoBehaviour
         }
     }
 
-    
-
     // Update is called once per frame
     void Update()
     {
 
     }
 
+    public void SetSpawner(ItemSpawner spawn)
+    {
+        spawner = spawn;
+        spawner.SetRoomScript(myRoom);
+    }
 }
