@@ -14,6 +14,10 @@ public class RoomGenerator : MonoBehaviour
     public int regularProb, minibossProb, recovProb;
     public int pathLength;
     public Vector2 roomDimension;
+
+    public List<GameObject> spawner;
+    public GameObject openDoorPrefab;
+
     void Start()
     {
         roomLayout = new Room[layoutHeight, layoutWidth];
@@ -37,8 +41,7 @@ public class RoomGenerator : MonoBehaviour
         roomLayout[(int)firstRoom.x - 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 1);
         roomLayout[(int)firstRoom.x + 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 2);
         roomLayout[(int)firstRoom.x, (int)firstRoom.y + 1] = new Room(GenerateRandomRoomType(), 3);
-        roomLayout[(int)firstRoom.x, (int)firstRoom.y-1] = new Room(Room.roomType.Boss, 4);
-
+        roomLayout[(int)firstRoom.x, (int)firstRoom.y - 1] = new Room(Room.roomType.Boss, 4);
 
         //Instantiate(testStart, new Vector3(10, 10, 0), Quaternion.identity);
         //G�n�ration vers Spawn
@@ -64,7 +67,7 @@ public class RoomGenerator : MonoBehaviour
                     {
                         roomLayout[i, j].doors.Add(Room.doorDirection.Right);
                     }
-                    if (j-1 >= 0 && roomLayout[i, j - 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j - 1].pathID || roomLayout[i, j - 1].pathID == 0))
+                    if (j - 1 >= 0 && roomLayout[i, j - 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j - 1].pathID || roomLayout[i, j - 1].pathID == 0))
                     {
                         roomLayout[i, j].doors.Add(Room.doorDirection.Down);
                     }
@@ -75,12 +78,71 @@ public class RoomGenerator : MonoBehaviour
                     //Debug.Log("Generate room");
                     GameObject newRoom = Instantiate(defaultRoom, new Vector3(i * roomDimension.x, j * roomDimension.y, 0), Quaternion.identity);
                     newRoom.GetComponent<RoomContent>().myRoom = roomLayout[i, j];
-                }
+                    newRoom.transform.parent = this.transform;
 
+                    if (roomLayout[i, j].type != Room.roomType.Spawn)
+                    {
+                        GameObject itemSpawn = Instantiate(spawner[0], newRoom.transform);
+                        newRoom.GetComponent<RoomContent>().SetSpawner(itemSpawn.GetComponent<ItemSpawner>());
+                        if (i - 1 >= 0 && roomLayout[i - 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i - 1, j].pathID || roomLayout[i - 1, j].pathID == 0) && roomLayout[i - 1, j].type == Room.roomType.Spawn)
+                            itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Left);
+                        if (i + 1 < layoutWidth - 1 && roomLayout[i + 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i + 1, j].pathID || roomLayout[i + 1, j].pathID == 0) && roomLayout[i + 1, j].type == Room.roomType.Spawn)
+                            itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Right);
+                        if (j - 1 >= 0 && roomLayout[i, j - 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j - 1].pathID || roomLayout[i, j - 1].pathID == 0) && roomLayout[i, j - 1].type == Room.roomType.Spawn)
+                            itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Down);
+                        if (j + 1 < layoutHeight - 1 && roomLayout[i, j + 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j + 1].pathID || roomLayout[i, j + 1].pathID == 0) && roomLayout[i, j + 1].type == Room.roomType.Spawn)
+                            itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Up);
+                    }
+                    else
+                    {
+                        GameObject tempGameObject;
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Left))
+                        {
+                            tempGameObject = Instantiate(openDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            tempGameObject.transform.SetLocalPositionAndRotation(new Vector3(-9.5f, -2.5f, 0), Quaternion.identity);
+                        }
+
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Right))
+                        {
+                            tempGameObject = Instantiate(openDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            tempGameObject.transform.SetLocalPositionAndRotation(new Vector3(9.5f, -2.5f, 0), Quaternion.identity);
+                        }
+
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Down))
+                        {
+                            tempGameObject = Instantiate(openDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            tempGameObject.transform.SetLocalPositionAndRotation(new Vector3(0.5f, -6.5f, 0), Quaternion.identity);
+                        }
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Up))
+                        {
+                            tempGameObject = Instantiate(openDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            tempGameObject.transform.SetLocalPositionAndRotation(new Vector3(0.5f, 2.5f, 0), Quaternion.identity);
+                        }
+                    }
+                }
             }
         }
 
+        LockedDoor[] _door = GetComponentsInChildren<LockedDoor>();
+        List<int> indexCheck = new List<int>();
+        for (int i = 0; i < _door.Length; ++i)
+        {
+            for (int j = 0; j < _door.Length; ++j)
+            {
+                if (!indexCheck.Contains(i) && !indexCheck.Contains(j) && i != j)
+                {
+                    if (Vector3.Distance(_door[i].transform.position, _door[j].transform.position) <= 1)
+                    {
+                        indexCheck.Add(i);
+                        indexCheck.Add(j);
+                        _door[i].SetConnectedDoor(_door[j]);
+                        _door[j].SetConnectedDoor(_door[i]);
+                    }
+                }
+            }
+        }
     }
+
     void TracePath(Vector2 origin, int length, Room.roomType lastRoomType, int pathID)
     {
         Vector2 originBackup = origin;
