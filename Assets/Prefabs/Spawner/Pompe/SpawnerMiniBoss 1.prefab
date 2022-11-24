@@ -73,7 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - item: {fileID: 11400000, guid: 464822b2034edf941bd759c556d9796c, type: 2}
-    nb: 10
+    nb: 5
     rarity: 100
   itemGameObjectList: []
   doorPrefab: {fileID: 536000874044555347, guid: 8108273a51c04d74d844b9290975e6c9, type: 3}
