@@ -48,7 +48,7 @@ public class Shooter : MonoBehaviour
 
     private void Start()
     {
-        lastShootTime = currentWeapon.weaponFireRate * -1;
+        lastShootTime = currentWeapon.weaponFireRate;
 
         lastCurrentWeapon = currentWeapon;
 
@@ -160,17 +160,20 @@ public class Shooter : MonoBehaviour
     //shoot set bullet and damagebullet
     private void TryToShoot()
     {
+        Debug.Log(lastShootTime);
         if (Time.time < lastShootTime + fireRateResult) return;
         for(int i = 0; i < currentWeapon.weaponAmountBullet; i++)
         {
             var bulletPosition = transform.position;
             var newBullet = Instantiate(bullet, bulletPosition, Quaternion.identity, bulletsParent);
+            var newBulletController = newBullet.GetComponent<BulletController>();
+            newBulletController._parentName = "Player";
             newBullet.up = transform.up;
             newBullet.Rotate(0, 0, Random.Range(-currentWeapon.weaponSpreadBullet, currentWeapon.weaponSpreadBullet));
 
             bullet.transform.localScale = new Vector3(areaBulletResult, areaBulletResult, 1);
             bullet.GetComponentInChildren<Rigidbody2DMovement>().speed = speedBulletResult;
-            setDamageBullet.damageOnTouch = damageBulletResult;
+            newBulletController.damageOnTouch = damageBulletResult;
         }
         lastShootTime = Time.time;
     }

@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -4304054284362474380}
   m_Layer: 8
   m_Name: Ennemy
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84992e9856104252b75dcee8a0e55dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: {fileID: 0}
+  enemyInvok: 0
 --- !u!114 &-6948004646658768805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351b25fa2df146ff97e3be186db279ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
   startLife: 1
-  onDamageTaken:
+  onHealthChange:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &2924757937228013609

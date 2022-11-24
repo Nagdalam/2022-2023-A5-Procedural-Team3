@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Vector2 lastDirection;
-    private Life life;
+    public Life life;
     private Rigidbody2DMovement movement;
     private Shooter[] shooters;
 

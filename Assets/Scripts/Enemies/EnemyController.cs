@@ -4,8 +4,9 @@ public class EnemyController : MonoBehaviour
 {
     private Transform player;
     private Rigidbody2DMovement movement;
-
+    public Life life;
     private RoomEnemiesManager enemiesManager;
+    public bool enemyInvok;
 
     private void Awake()
     {
@@ -17,6 +18,11 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        if (enemyInvok)
+        {
+            enabled = true;
+        }
+        else
         enabled = false;
     }
 
