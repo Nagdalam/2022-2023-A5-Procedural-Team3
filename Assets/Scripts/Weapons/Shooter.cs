@@ -48,18 +48,6 @@ public class Shooter : MonoBehaviour
 
     private void Start()
     {
-        lastShootTime = currentWeapon.weaponFireRate;
-
-        lastCurrentWeapon = currentWeapon;
-
-        fireRateResult = currentWeapon.weaponFireRate;
-
-        damageBulletResult = currentWeapon.weaponDamage;
-
-        areaBulletResult = currentWeapon.weaponAreaBullet;
-
-        speedBulletResult = currentWeapon.weaponSpeedBullet;
-
         SetAllStat();
     }
 
@@ -95,7 +83,7 @@ public class Shooter : MonoBehaviour
                 SetAllStat();
                 break;
             case 2:
-                damageBulletPercent += 25;
+                damageBulletPercent += 100;
 
                 SetAllStat();
                 break;
@@ -114,13 +102,13 @@ public class Shooter : MonoBehaviour
     }
     public void SetAllPercent()
     {
-        fireRatePercent += 50;
+        fireRatePercent += 25;
 
-        damageBulletPercent += 50;
+        damageBulletPercent += 100;
 
-        areaBulletPercent += 50;
+        areaBulletPercent += 25;
 
-        speedBulletPercent += 50;
+        speedBulletPercent += 25;
 
         SetAllStat();
     }
@@ -129,7 +117,7 @@ public class Shooter : MonoBehaviour
     {
         if (fireRatePercent!=0) 
         {
-            fireRateResult = currentWeapon.weaponFireRate - (currentWeapon.weaponFireRate / fireRatePercent);
+            fireRateResult = (currentWeapon.weaponFireRate * (100 - fireRatePercent)/100);
         }
         else
         {
@@ -138,7 +126,7 @@ public class Shooter : MonoBehaviour
 
         if (damageBulletPercent != 0)
         {
-            damageBulletResult = currentWeapon.weaponDamage + (currentWeapon.weaponDamage / damageBulletPercent);
+            damageBulletResult = (currentWeapon.weaponDamage * (100 + damageBulletPercent)/100);
         }
         else
         {
@@ -147,7 +135,7 @@ public class Shooter : MonoBehaviour
 
         if (areaBulletPercent != 0)
         {
-            areaBulletResult = currentWeapon.weaponAreaBullet+(currentWeapon.weaponAreaBullet/areaBulletPercent);
+            areaBulletResult = (currentWeapon.weaponAreaBullet * (100+areaBulletPercent)/100);
         }
         else
         {
@@ -156,7 +144,7 @@ public class Shooter : MonoBehaviour
 
         if (speedBulletPercent != 0)
         {
-            speedBulletResult = currentWeapon.weaponSpeedBullet+(currentWeapon.weaponSpeedBullet/speedBulletPercent);
+            speedBulletResult = (currentWeapon.weaponSpeedBullet * (100+speedBulletPercent)/100);
         }
         else
         {

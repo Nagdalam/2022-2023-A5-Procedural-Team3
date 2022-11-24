@@ -72,6 +72,7 @@ SpriteAtlas:
   - {fileID: -295721097, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: 21300000, guid: 336898ca73cbcf84e8bada1ca192fa0a, type: 3}
   - {fileID: 21300000, guid: 1966302b397fbc84e866be3b2c057517, type: 3}
+  - {fileID: 21300000, guid: 03c6ccacf77f5b14aba51c0e81005c1f, type: 3}
   - {fileID: 21300000, guid: 5037d5ce3a6c90a44a6c8e9e07d686d6, type: 3}
   - {fileID: -873325267, guid: eb4b67dffc445c246a8b3a050414235b, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -95,6 +96,7 @@ SpriteAtlas:
   - tilemapFloor_0
   - tilemapFloor_1
   - BarV5_ProgressBar
+  - Boss2
   - Boss2
   - 440-4400240_wall-crack-pixel-art-cracks
   - Triangle_0
