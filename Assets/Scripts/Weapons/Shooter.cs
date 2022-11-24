@@ -131,20 +131,36 @@ public class Shooter : MonoBehaviour
         {
             fireRateResult = currentWeapon.weaponFireRate - (currentWeapon.weaponFireRate / fireRatePercent);
         }
+        else
+        {
+            fireRateResult = currentWeapon.weaponFireRate;
+        }
 
         if (damageBulletPercent != 0)
         {
             damageBulletResult = currentWeapon.weaponDamage + (currentWeapon.weaponDamage / damageBulletPercent);
+        }
+        else
+        {
+            damageBulletResult = currentWeapon.weaponDamage;
         }
 
         if (areaBulletPercent != 0)
         {
             areaBulletResult = currentWeapon.weaponAreaBullet+(currentWeapon.weaponAreaBullet/areaBulletPercent);
         }
+        else
+        {
+            areaBulletResult = currentWeapon.weaponAreaBullet;
+        }
 
         if (speedBulletPercent != 0)
         {
             speedBulletResult = currentWeapon.weaponSpeedBullet+(currentWeapon.weaponSpeedBullet/speedBulletPercent);
+        }
+        else
+        {
+            speedBulletResult = currentWeapon.weaponSpeedBullet;
         }
     }
 
