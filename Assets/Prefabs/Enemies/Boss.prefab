@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4628493913935185708}
   - component: {fileID: 4628493913935185711}
   - component: {fileID: 7530170454077765436}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boss
   m_TagString: Enemies
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4419314047606676974, guid: a8969b488739f274f81899b0af182c68, type: 3}
   delayToSpawn: 10
-  amoutEnemy: 0
+  amoutEnemy: 2
   spawns:
   - {fileID: 7661835105820399600}
   - {fileID: 5531336358304457299}

@@ -168,6 +168,7 @@ MonoBehaviour:
   - {fileID: 5537170825705704791, guid: a082d6483a0cb1e4a9432b7024b6d45b, type: 3}
   - {fileID: 5537170825705704791, guid: 51f1f97d84351944ea62b870a0fee735, type: 3}
   openDoorPrefab: {fileID: 6217952808718131520, guid: 82a2d0ac221987d45b9f5392fafd301e, type: 3}
+  lockedDoorPrefab: {fileID: 536000874044555347, guid: 8108273a51c04d74d844b9290975e6c9, type: 3}
 --- !u!4 &20105511
 Transform:
   m_ObjectHideFlags: 0
