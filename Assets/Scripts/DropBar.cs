@@ -20,8 +20,8 @@ public class DropBar : MonoBehaviour
         TryGetComponent(out slider);
         /*TryGetComponent(out percentageText);*/
 
-        LootManager.current.onChangePercentage += ChangePercentage;
-        LootManager.current.onSetPercentage += SetPercentage;
+        /*LootManager.current.onChangePercentage += ChangePercentage;
+        LootManager.current.onSetPercentage += SetPercentage;*/
 
         slider.minValue = minPercentage;
         slider.maxValue = maxPercentage;
@@ -29,7 +29,8 @@ public class DropBar : MonoBehaviour
 
     private void Start()
     {
-
+        LootManager.current.onChangePercentage += ChangePercentage;
+        LootManager.current.onSetPercentage += SetPercentage;
     }
 
     void Update()

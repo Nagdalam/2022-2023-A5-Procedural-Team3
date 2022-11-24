@@ -16,6 +16,5 @@ MonoBehaviour:
   lootTable:
     keys:
     - {fileID: 11400000, guid: 33ccd30e0fa220646a6d91207727dff9, type: 2}
-    - {fileID: 11400000, guid: 33ccd30e0fa220646a6d91207727dff9, type: 2}
-    - {fileID: 11400000, guid: 9bf997d7fd59dfd4696662f780c81305, type: 2}
-    values: 320000000000000032000000
+    - {fileID: 11400000, guid: 4f5bca49c91d7204fb19680ec9282ff5, type: 2}
+    values: 2100000042000000

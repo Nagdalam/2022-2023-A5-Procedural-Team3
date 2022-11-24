@@ -73,7 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - item: {fileID: 11400000, guid: 464822b2034edf941bd759c556d9796c, type: 2}
-    nb: 5
+    nb: 3
     rarity: 100
   itemGameObjectList:
   - item: {fileID: 7143052517036596304, guid: 11b8838a4c6ce77419cc01543c075555, type: 3}
@@ -83,5 +83,7 @@ MonoBehaviour:
   openDoorPrefab: {fileID: 6217952808718131520, guid: 82a2d0ac221987d45b9f5392fafd301e, type: 3}
   distanceMinBetweenObjects: 1
   distanceFromDoor: 3
-  comptToSpawn: 20
+  comptToSpawn: 40
   showGizmo: 0
+  boss1Spawn: 0
+  boss2: {fileID: 0}

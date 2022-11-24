@@ -11,7 +11,7 @@ public class RoomEnemiesManager : MonoBehaviour
         {
             
             enemy.enabled = isActive;
-            enemy.player = FindObjectOfType<PlayerController>().transform;
+            enemy.player = FindObjectOfType<PlayerController>();
         }
     }
 

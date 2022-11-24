@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1089b9c6f32c9da41b4ca654466af955, type: 3}
-  m_Name: Enemy_2
+  m_Name: Enemy_Rare
   m_EditorClassIdentifier: 
-  entity: {fileID: 4419314047606676974, guid: 1cd9d0c17a8a5af45b1ea41cd3303041, type: 3}
+  entity: {fileID: 4419314047606676974, guid: 698726e94352fe249b5fea65ef095614, type: 3}
   lootTable:
     keys:
-    - {fileID: 11400000, guid: 33ccd30e0fa220646a6d91207727dff9, type: 2}
-    - {fileID: 11400000, guid: 4f5bca49c91d7204fb19680ec9282ff5, type: 2}
-    - {fileID: 11400000, guid: 9bf997d7fd59dfd4696662f780c81305, type: 2}
     - {fileID: 11400000, guid: 6040d26d8db538845a49bb14ed33e96d, type: 2}
+    - {fileID: 11400000, guid: 9bf997d7fd59dfd4696662f780c81305, type: 2}
     - {fileID: 11400000, guid: df2596b365032fe49841537e86000f1b, type: 2}
-    values: 2300000032000000050000000500000005000000
+    values: 210000002100000021000000

@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84992e9856104252b75dcee8a0e55dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   life: {fileID: 0}
   enemyInvok: 0
 --- !u!114 &-6948004646658768805
@@ -206,6 +207,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   stats: {fileID: 0}
+  dropAmountIncrease: 6
 --- !u!114 &2924757937228013609
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,11 +13,19 @@ public class LifeDisplayController : MonoBehaviour
             Instantiate(heartPrefab, transform);
         }
 
-        var playerLife = FindObjectOfType<PlayerController>().GetComponent<Life>();
+        DungeonManager.current.onPlayerSpawn += SetPlayerData;
+
+        /*var playerLife = FindObjectOfType<PlayerController>().GetComponent<Life>();
         ChangeHeartsCount(playerLife.startLife);
-        playerLife.onHealthChange.AddListener(ChangeHeartsCount);
+        playerLife.onHealthChange.AddListener(ChangeHeartsCount);*/
     }
 
+    private void FixedUpdate()
+    {
+        /*var player = FindObjectOfType<PlayerController>();
+        if (!player)
+            return;*/
+    }
     private void ChangeHeartsCount(uint newCount)
     {
         var childrenCount = transform.childCount;
@@ -28,5 +36,12 @@ public class LifeDisplayController : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(newCount>i);
         }
+    }
+
+    void SetPlayerData()
+    {
+        var playerLife = DungeonManager.current.player.life;
+        ChangeHeartsCount(playerLife.startLife);
+        playerLife.onHealthChange.AddListener(ChangeHeartsCount);
     }
 }

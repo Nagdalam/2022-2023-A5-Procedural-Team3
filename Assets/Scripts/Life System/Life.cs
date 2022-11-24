@@ -21,6 +21,7 @@ public class Life : MonoBehaviour
     private bool isAlive = true;
 
     public Stats stats = null;
+    public float dropAmountIncrease = 10;
 
     private void Awake()
     {
@@ -68,7 +69,7 @@ public class Life : MonoBehaviour
             {
                 if (LootManager.current)
                 {
-                    LootManager.current.ChangePercentage(LootManager.current.dropBar.amountPercentageIncrease);
+                    LootManager.current.ChangePercentage(dropAmountIncrease);
                     LootManager.current.RandLoot(lootTable);
                 }
             }

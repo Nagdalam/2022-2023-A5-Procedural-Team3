@@ -12,9 +12,13 @@ public class PlayerController : MonoBehaviour
     
     private void Awake()
     {
+        DungeonManager.current.player = this;
+
         shooters = GetComponentsInChildren<Shooter>();
         life = GetComponent<Life>();
         movement = GetComponent<Rigidbody2DMovement>();
+
+        DungeonManager.current.onPlayerSpawn?.Invoke();
     }
 
     private void Start()

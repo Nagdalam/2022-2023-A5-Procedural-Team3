@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3000776291934071943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3209745883029276510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72,11 +72,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4628493913935185704}
   - component: {fileID: 4628493913935185708}
-  - component: {fileID: 4628493913935185711}
-  - component: {fileID: 7530170454077765436}
-  - component: {fileID: 4355087421611477422}
+  - component: {fileID: 6090082645961061330}
+  - component: {fileID: 8914515310795264266}
+  - component: {fileID: 6571721062800088811}
+  - component: {fileID: 3373053939540047073}
   m_Layer: 8
-  m_Name: Boss
+  m_Name: Boss 2
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +92,7 @@ Transform:
   m_GameObject: {fileID: 4628493913935185715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5329556, y: -1.9427842, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7661835105820399600}
@@ -121,31 +122,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4628493913935185711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4628493913935185715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 679a42827dd51464cbe98d98905220a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4419314047606676974, guid: a8969b488739f274f81899b0af182c68, type: 3}
-  delayToSpawn: 10
-  amoutEnemy: 2
-  spawns:
-  - {fileID: 7661835105820399600}
-  - {fileID: 5531336358304457299}
-  startFight: 0
-  fireRate: 2.5
-  bullet: {fileID: 5485737571027047290, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
-  AmoutBullet: 12
-  speedBullet: 10
---- !u!58 &7530170454077765436
-CircleCollider2D:
+--- !u!70 &6090082645961061330
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -158,9 +136,45 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.32
---- !u!114 &4355087421611477422
+  m_Size: {x: 0.5, y: 1.5}
+  m_Direction: 0
+--- !u!114 &8914515310795264266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628493913935185715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7096699f015a1042a9704ef97ec1883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 4419314047606676974, guid: 0dac7fa67fef75d429939f8a96482bf1, type: 3}
+  delayToSpawn: 10
+  amoutEnemy: 2
+  spawns:
+  - {fileID: 7661835105820399600}
+  - {fileID: 5531336358304457299}
+  startFight: 0
+  fireRate: 2.5
+  bullet: {fileID: 5485737571027047290, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
+  AmoutBullet: 4
+  speedBullet: 10
+--- !u!114 &6571721062800088811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628493913935185715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9e8c91d838e495398a739916ad2c454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &3373053939540047073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInvincible: 0
-  startLife: 100
+  startLife: 25
   onHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -252,7 +266,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0acb04d03d4130d468ea776e25cfde92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 03c6ccacf77f5b14aba51c0e81005c1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

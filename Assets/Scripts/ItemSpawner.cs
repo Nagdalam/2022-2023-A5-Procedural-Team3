@@ -41,6 +41,9 @@ public class ItemSpawner : MonoBehaviour
     private Vector3 upDoorPosition = new Vector3(0.5f, 4.5f, 0);
     private Vector3 downDoorPosition = new Vector3(0.5f, -4.5f, 0);
 
+    public bool boss1Spawn;
+    public GameObject boss2;
+
     private void Awake()
     {
         itemSpawn = new List<GameObject>();
@@ -77,6 +80,50 @@ public class ItemSpawner : MonoBehaviour
         {
             door1 = Instantiate<GameObject>(doorPrefab, rightDoorPosition, rotationDoor, this.transform);
             door1.transform.localPosition = rightDoorPosition;
+        }
+
+        for (int i = 0; i < itemGameObjectList.Count; ++i)
+        {
+            for (int j = 0; j < itemGameObjectList[i].nb; ++j)
+            {
+                if (itemGameObjectList[i].rarity >= Random.Range(1, 101))
+                {
+                    var newPos = RandomPointInBounds(boxCollider2D.bounds);
+                    int compt = 0;
+                    int layerMask = ~LayerMask.GetMask("Rooms") & ~LayerMask.GetMask("NoCollision");
+                    bool dontSpawn = false;
+                    while (Physics2D.OverlapCircle(newPos, distanceMinBetweenObjects, layerMask)
+                        || (door1 != null && Vector3.Distance(newPos, door1.transform.position) <= distanceFromDoor)
+                        || (door2 != null && Vector3.Distance(newPos, door2.transform.position) <= distanceFromDoor)
+                        || (door3 != null && Vector3.Distance(newPos, door3.transform.position) <= distanceFromDoor)
+                        || (door4 != null && Vector3.Distance(newPos, door4.transform.position) <= distanceFromDoor))
+                    {
+                        newPos = RandomPointInBounds(boxCollider2D.bounds);
+                        if (compt == comptToSpawn)
+                        {
+                            Debug.LogError("Not enough place : " + Physics2D.OverlapCircle(newPos, 1, layerMask));
+                            dontSpawn = true;
+                            break;
+                        }
+                        compt++;
+                    }
+                    if (!dontSpawn)
+                    {
+                        if (roomScript.type == Room.roomType.Boss && boss1Spawn && i == 0)
+                        {
+                            GameObject temp = Instantiate(boss2, newPos, Quaternion.identity);
+                            temp.transform.parent = this.transform;
+                            itemGameObjectSpawn.Add(temp);
+                        }
+                        else
+                        {
+                            GameObject temp = Instantiate(itemGameObjectList[i].item, newPos, Quaternion.identity);
+                            temp.transform.parent = this.transform;
+                            itemGameObjectSpawn.Add(temp);
+                        }
+                    }
+                }
+            }
         }
 
         for (int i = 0; i < itemList.Count; ++i)
@@ -121,42 +168,8 @@ public class ItemSpawner : MonoBehaviour
                 }
             }
         }
-
-        for (int i = 0; i < itemGameObjectList.Count; ++i)
-        {
-            for (int j = 0; j < itemGameObjectList[i].nb; ++j)
-            {
-                if (itemGameObjectList[i].rarity >= Random.Range(1, 101))
-                {
-                    var newPos = RandomPointInBounds(boxCollider2D.bounds);
-                    int compt = 0;
-                    int layerMask = ~LayerMask.GetMask("Rooms") & ~LayerMask.GetMask("NoCollision");
-                    bool dontSpawn = false;
-                    while (Physics2D.OverlapCircle(newPos, distanceMinBetweenObjects, layerMask)
-                        || (door1 != null && Vector3.Distance(newPos, door1.transform.position) <= distanceFromDoor)
-                        || (door2 != null && Vector3.Distance(newPos, door2.transform.position) <= distanceFromDoor)
-                        || (door3 != null && Vector3.Distance(newPos, door3.transform.position) <= distanceFromDoor)
-                        || (door4 != null && Vector3.Distance(newPos, door4.transform.position) <= distanceFromDoor))
-                    {
-                        newPos = RandomPointInBounds(boxCollider2D.bounds);
-                        if (compt == comptToSpawn)
-                        {
-                            Debug.LogError("Not enough place : " + Physics2D.OverlapCircle(newPos, 1, layerMask));
-                            dontSpawn = true;
-                            break;
-                        }
-                        compt++;
-                    }
-                    if (!dontSpawn)
-                    {
-                        GameObject temp = Instantiate(itemGameObjectList[i].item, newPos, Quaternion.identity);
-                        temp.transform.parent = this.transform;
-                        itemGameObjectSpawn.Add(temp);
-                    }
-                }
-            }
-        }
     }
+
     void OnDrawGizmosSelected()
     {
         if (showGizmo)
