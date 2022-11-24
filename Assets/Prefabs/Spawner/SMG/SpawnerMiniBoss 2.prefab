@@ -80,5 +80,7 @@ MonoBehaviour:
   openDoorPrefab: {fileID: 6217952808718131520, guid: 82a2d0ac221987d45b9f5392fafd301e, type: 3}
   distanceMinBetweenObjects: 1
   distanceFromDoor: 3
-  comptToSpawn: 20
+  comptToSpawn: 40
   showGizmo: 0
+  boss1Spawn: 0
+  boss2: {fileID: 0}
