@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public abstract class Icon : MonoBehaviour
 {
-    [SerializeField] GameObject _target;
+    [SerializeField] protected GameObject _target;
     [SerializeField] Vector3 _offset;
 
     public Action _onActivation;
@@ -17,6 +17,9 @@ public abstract class Icon : MonoBehaviour
 
     protected void Awake()
     {
+        if (!_target)
+            _target = GetComponentInParent<Life>().gameObject;
+
         TryGetComponent(out _rawImage);
         TryGetComponent(out _rectTransform);
 

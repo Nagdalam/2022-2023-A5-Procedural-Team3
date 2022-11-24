@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4531542334013034545}
   - component: {fileID: 4531542334013034546}
   - component: {fileID: 4531542334013034547}
+  - component: {fileID: -5603151887540604331}
   m_Layer: 5
   m_Name: Icons
   m_TagString: Untagged
@@ -102,6 +103,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-5603151887540604331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4531542334013034549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307c7330f678fc948b0cabd79649955c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4459994001607914818
 PrefabInstance:
   m_ObjectHideFlags: 0

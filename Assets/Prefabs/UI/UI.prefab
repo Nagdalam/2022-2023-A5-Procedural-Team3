@@ -318,7 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPercentage: 0
   maxPercentage: 100
-  amountPercentageIncrease: 2
+  amountPercentageIncrease: 0
   percentage: 0
   slider: {fileID: 9186752439452499413}
   percentageText: {fileID: 1645262156}
