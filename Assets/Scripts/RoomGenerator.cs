@@ -18,6 +18,7 @@ public class RoomGenerator : MonoBehaviour
 
     public List<GameObject> spawner;
     public GameObject openDoorPrefab;
+    public GameObject lockedDoorPrefab;
 
     void Update()
     {
@@ -115,10 +116,10 @@ public class RoomGenerator : MonoBehaviour
                     }
                     if (roomLayout[i, j].type == Room.roomType.Secret)
                     {
-                        if (i - 1 >= 0 && roomLayout[i - 1, j] !=null && roomLayout[i - 1, j].type == Room.roomType.SecretEntrance)
+                        if (i - 1 >= 0 && roomLayout[i - 1, j] != null && roomLayout[i - 1, j].type == Room.roomType.SecretEntrance)
                         {
                             roomLayout[i, j].doors.Add(Room.doorDirection.Left);
-                            roomLayout[i-1, j].doors.Add(Room.doorDirection.Right);
+                            roomLayout[i - 1, j].doors.Add(Room.doorDirection.Right);
                         }
                         if (i + 1 < layoutWidth - 1 && roomLayout[i + 1, j] != null && roomLayout[i + 1, j].type == Room.roomType.SecretEntrance)
                         {
@@ -128,7 +129,7 @@ public class RoomGenerator : MonoBehaviour
                         if (j - 1 >= 0 && roomLayout[i, j - 1] != null && roomLayout[i, j - 1].type == Room.roomType.SecretEntrance)
                         {
                             roomLayout[i, j].doors.Add(Room.doorDirection.Down);
-                            roomLayout[i, j-1].doors.Add(Room.doorDirection.Up);
+                            roomLayout[i, j - 1].doors.Add(Room.doorDirection.Up);
                         }
                         if (j + 1 < layoutHeight - 1 && roomLayout[i, j + 1] != null && roomLayout[i, j + 1].type == Room.roomType.SecretEntrance)
                         {
@@ -171,7 +172,7 @@ public class RoomGenerator : MonoBehaviour
                         if (j + 1 < layoutHeight - 1 && roomLayout[i, j + 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j + 1].pathID || roomLayout[i, j + 1].pathID == 0) && roomLayout[i, j + 1].type == Room.roomType.Spawn)
                             itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Up);
                     }
-                    else
+                    else if (roomLayout[i, j].type == Room.roomType.Spawn)
                     {
                         GameObject tempGameObject;
                         if (roomLayout[i, j].doors.Contains(Room.doorDirection.Left))
@@ -195,6 +196,31 @@ public class RoomGenerator : MonoBehaviour
                         {
                             tempGameObject = Instantiate(openDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
                             tempGameObject.transform.SetLocalPositionAndRotation(new Vector3(0.5f, 2.5f, 0), Quaternion.identity);
+                        }
+                    }
+                    if (roomLayout[i, j].type == Room.roomType.SecretEntrance)
+                    {
+                        GameObject gameObject;
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Left) && roomLayout[i - 1, j].type!= Room.roomType.Secret)
+                        {
+                            gameObject = Instantiate(lockedDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            gameObject.transform.SetLocalPositionAndRotation(new Vector3(-9.5f, -2.5f, 0), Quaternion.identity);
+                        }
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Right) && roomLayout[i + 1, j].type != Room.roomType.Secret)
+                        {
+                            gameObject = Instantiate(lockedDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            gameObject.transform.SetLocalPositionAndRotation(new Vector3(9.5f, -2.5f, 0), Quaternion.identity);
+                        }
+
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Down) && roomLayout[i , j-1].type != Room.roomType.Secret)
+                        {
+                            gameObject = Instantiate(lockedDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            gameObject.transform.SetLocalPositionAndRotation(new Vector3(0.5f, -6.5f, 0), Quaternion.identity);
+                        }
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Up) && roomLayout[i , j+1].type != Room.roomType.Secret)
+                        {
+                            gameObject = Instantiate(lockedDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            gameObject.transform.SetLocalPositionAndRotation(new Vector3(0.5f, 2.5f, 0), Quaternion.identity);
                         }
                     }
                 }
