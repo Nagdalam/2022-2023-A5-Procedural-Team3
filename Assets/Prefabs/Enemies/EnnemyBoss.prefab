@@ -17,9 +17,8 @@ GameObject:
   - component: {fileID: 3172543913208597241}
   - component: {fileID: 2924757937228013609}
   - component: {fileID: -4304054284362474380}
-  - component: {fileID: 2686341453569073434}
   m_Layer: 8
-  m_Name: Ennemy
+  m_Name: EnnemyBoss
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: {fileID: 0}
-  enemyInvok: 0
+  enemyInvok: 1
 --- !u!114 &-6948004646658768805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +172,6 @@ MonoBehaviour:
   onHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  stats: {fileID: 0}
 --- !u!114 &2924757937228013609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,17 +200,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDelay: 0
   damageOnTouch: 1
---- !u!114 &2686341453569073434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419314047606676974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a44d9dce1c75494a8620b1791cf3a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dataEntity: {fileID: 0}
-  dataLoot: []

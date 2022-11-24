@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class FirstBossBattle : MonoBehaviour
 {
     [SerializeField]
     private GameObject enemyPrefab;
-    [SerializeField]
     private float timerToSpawn;
     [SerializeField]
     private float delayToSpawn;
+    [SerializeField] 
+    private float amoutEnemy;
+    [SerializeField] 
+    private Transform[] spawns;
     [SerializeField]
     private bool startFight = false;
     private float lastShootTime;
@@ -22,7 +26,6 @@ public class FirstBossBattle : MonoBehaviour
     private float AmoutBullet = 12;
     [SerializeField]
     private float speedBullet;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +36,13 @@ public class FirstBossBattle : MonoBehaviour
     private void SpawnEnemy()
     {
         if (Time.time < timerToSpawn + delayToSpawn) return;
-        Instantiate (enemyPrefab, transform.position, transform.rotation);
+        for (int i = 0; i < amoutEnemy; i++)
+        {
+            GameObject newEnemy = Instantiate(enemyPrefab, spawns[i].transform.position, transform.rotation);
+            Debug.Log(newEnemy.GetComponent<EnemyController>());
+            newEnemy.GetComponent<EnemyController>().enabled = true;
+        }
+            
         timerToSpawn = Time.time;
     }
 
@@ -46,6 +55,7 @@ public class FirstBossBattle : MonoBehaviour
             
             var bulletPosition = transform.position;
             var newBullet = Instantiate(bullet, bulletPosition, Quaternion.identity, bulletsParent);
+            newBullet.GetComponent<BulletController>()._parentName = "Enemies";
             newBullet.transform.up = transform.up;
             newBullet.transform.Rotate(0, 0, j);
 
