@@ -125,7 +125,7 @@ public class Shooter : MonoBehaviour
         SetAllStat();
     }
 
-    private void SetAllStat()
+    public void SetAllStat()
     {
         if (fireRatePercent!=0) 
         {
