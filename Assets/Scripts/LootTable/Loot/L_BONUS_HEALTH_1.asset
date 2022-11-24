@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03278ef63137d7479a6754e0cf01cb8, type: 3}
   m_Name: L_BONUS_HEALTH_1
   m_EditorClassIdentifier: 
-  lootPrefab: {fileID: 0}
+  lootPrefab: {fileID: 7143052517036596304, guid: 7121bd4035884d84bb77db5920cf6736, type: 3}
   lootData:
-    lootName: 
+    lootName: Exceed Life
     lootRarity: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03278ef63137d7479a6754e0cf01cb8, type: 3}
   m_Name: L_SHOT_GUN_1
   m_EditorClassIdentifier: 
-  lootPrefab: {fileID: 0}
+  lootPrefab: {fileID: 5345469708876372745, guid: c3d731f347bb8ad4897059d0894e3295, type: 3}
   lootData:
-    lootName: 
+    lootName: Shot Gun
     lootRarity: 0

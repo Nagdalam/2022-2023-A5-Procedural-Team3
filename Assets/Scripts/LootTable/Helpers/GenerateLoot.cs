@@ -37,31 +37,42 @@ public class GenerateLoot : MonoBehaviour
 
             string path = "Assets/Scripts/LootTable/Loot/L_" + lootIDField + ".asset";
 
+            // Ceate the empty scriptable object if it doesn't exist yet
             if (!File.Exists(path))
             {
                 DataLoot newLoot = ScriptableObject.CreateInstance<DataLoot>();
 
                 // path has to start at "Assets"
                 AssetDatabase.CreateAsset(newLoot, path);
+
+                EditorUtility.SetDirty(newLoot);
                 AssetDatabase.SaveAssets();
+
                 AssetDatabase.Refresh();
 
                 EditorUtility.FocusProjectWindow();
                 Selection.activeObject = newLoot;
             }
 
+            // Get the Data Loot scriptable object
             var loot = (DataLoot) AssetDatabase.LoadAssetAtPath(path, typeof(DataLoot));
 
+            // Add it to the list of all loots available
             if (!DataGeneralLoots.CurrentGeneralGameData.dataLoots.Contains(loot))
             {
                 DataGeneralLoots.CurrentGeneralGameData.dataLoots.Add(loot);
                 Debug.Log(loot.lootData.lootName);
             }
 
+            // Set its Data
             var prefab = (GameObject)AssetDatabase.LoadAssetAtPath(prefabPathField, typeof(GameObject));
             loot.lootPrefab = prefab;
             loot.lootData.lootName = lootNameField;
             loot.lootData.lootRarity = (ERarity)System.Enum.Parse(typeof(ERarity), lootRarityField);
+
+            // Save so it doesn't reset on closing
+            EditorUtility.SetDirty(loot);
+            AssetDatabase.SaveAssets();
         }
     }
 
