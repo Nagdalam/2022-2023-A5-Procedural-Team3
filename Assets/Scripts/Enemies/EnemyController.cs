@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     public Life life;
     private RoomEnemiesManager enemiesManager;
     public bool enemyInvok;
+    private EnemyTurret enemyTurret; 
 
     private void Awake()
     {
@@ -14,6 +15,8 @@ public class EnemyController : MonoBehaviour
         player = FindObjectOfType<PlayerController>().transform;
         enemiesManager = GetComponentInParent<RoomEnemiesManager>();
         enemiesManager.AddEnemyToRoom(this);
+        if(!enemyTurret)
+        enemyTurret= GetComponent<EnemyTurret>();
     }
 
     private void Start()
@@ -35,7 +38,7 @@ public class EnemyController : MonoBehaviour
     {
         if (player == null)
             return;
-
+        enemyTurret.startFight = true;
         movement.SetDirection(player.position - transform.position);
     }
 
