@@ -58,7 +58,7 @@ public class Life : MonoBehaviour
         onHealthChange?.Invoke(currentLife);
     }
 
-    private void Die()
+    public void Die()
     {
         StartCoroutine(DieCoroutine());
 
