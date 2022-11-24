@@ -161,6 +161,9 @@ MonoBehaviour:
   recovProb: 0
   pathLength: 8
   roomDimension: {x: 20, y: 10}
+  spawner:
+  - {fileID: 5537170825705704791, guid: ae1ebb631f127374bab8a9285de1749e, type: 3}
+  openDoorPrefab: {fileID: 6217952808718131520, guid: 82a2d0ac221987d45b9f5392fafd301e, type: 3}
 --- !u!4 &20105511
 Transform:
   m_ObjectHideFlags: 0
