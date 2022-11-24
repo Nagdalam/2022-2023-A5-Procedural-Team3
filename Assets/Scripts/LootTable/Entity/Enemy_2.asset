@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1089b9c6f32c9da41b4ca654466af955, type: 3}
-  m_Name: Enemy_1
+  m_Name: Enemy_2
   m_EditorClassIdentifier: 
-  entity: {fileID: 4419314047606676974, guid: 662e60a18e7b61b499d726b49b602e90, type: 3}
+  entity: {fileID: 4419314047606676974, guid: 1cd9d0c17a8a5af45b1ea41cd3303041, type: 3}
   lootTable:
     keys:
     - {fileID: 11400000, guid: 33ccd30e0fa220646a6d91207727dff9, type: 2}
     - {fileID: 11400000, guid: 33ccd30e0fa220646a6d91207727dff9, type: 2}
     - {fileID: 11400000, guid: 9bf997d7fd59dfd4696662f780c81305, type: 2}
-    values: 320000000000000032000000
+    values: 000000000000000064000000
