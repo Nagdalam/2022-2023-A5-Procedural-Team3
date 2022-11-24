@@ -52,12 +52,12 @@ public class LootManager : MonoBehaviour
         // Unlucky
         if (!CanDropLoot())
         {
-            Debug.Log("Unlucky !");
+            /*Debug.Log("Unlucky !");*/
             return;
         }
 
         // Lucky
-        Debug.Log("Lucky !");
+        /*Debug.Log("Lucky !");*/
         onSetPercentage?.Invoke(0);
 
         lootTable.RandLoot();
