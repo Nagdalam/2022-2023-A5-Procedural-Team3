@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03278ef63137d7479a6754e0cf01cb8, type: 3}
   m_Name: L_LIFE_POINT_1
   m_EditorClassIdentifier: 
-  lootPrefab: {fileID: 0}
+  lootPrefab: {fileID: 7143052517036596304, guid: fafb877a873f5e945937d9c36a5ac408, type: 3}
   lootData:
-    lootName: 
+    lootName: Minor Heal
     lootRarity: 0

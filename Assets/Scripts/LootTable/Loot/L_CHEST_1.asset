@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootPrefab: {fileID: 7143052517036596304, guid: 11b8838a4c6ce77419cc01543c075555, type: 3}
   lootData:
-    lootName: IIK
+    lootName: Platinum Chest
     lootRarity: 1

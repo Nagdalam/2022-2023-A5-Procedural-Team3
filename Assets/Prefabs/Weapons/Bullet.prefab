@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 8776810948865090951}
   - component: {fileID: 2793912637471948836}
   - component: {fileID: 8265584397746025040}
-  - component: {fileID: 5429550406906552165}
-  - component: {fileID: 1701375715172481772}
   m_Layer: 11
   m_Name: Bullet
   m_TagString: Bullet
@@ -32,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5485737571027047290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -139,6 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a294757b76475eb8f3724e0b1d8d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageDelay: 0
+  damageOnTouch: 1
+  bulletSecretRoom: 0
+  _parent:
+    serializedVersion: 2
+    m_Bits: 0
+  _parentName: 
 --- !u!114 &8265584397746025040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,35 +156,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e8c91d838e495398a739916ad2c454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
---- !u!114 &5429550406906552165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5485737571027047290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 888d3fdc8fcc4273be4210c733dd14aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageDelay: 0
-  damageOnTouch: 1
---- !u!114 &1701375715172481772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5485737571027047290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 351b25fa2df146ff97e3be186db279ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInvincible: 0
-  startLife: 1
-  onHealthChange:
-    m_PersistentCalls:
-      m_Calls: []
+  speed: 5

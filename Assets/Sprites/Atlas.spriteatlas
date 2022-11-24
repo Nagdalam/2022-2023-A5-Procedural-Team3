@@ -52,7 +52,10 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: cf315a12087b67c4dab44aecb3d72b9d, type: 3}
+  - {fileID: 21300000, guid: e2a812c2db90c9c43aa0613aa8399e75, type: 3}
+  - {fileID: 21300000, guid: 9eafedd3e285dda4ba7856412f861a57, type: 3}
   - {fileID: 21300000, guid: f3ef024444d630c48a84217d21dccdbc, type: 3}
+  - {fileID: 21300000, guid: e9a6ab362f1e1b9438803bd800e9656b, type: 3}
   - {fileID: 877609874, guid: f0361519cb1e22347a4a01a025eb231a, type: 3}
   - {fileID: 2025124053, guid: f0361519cb1e22347a4a01a025eb231a, type: 3}
   - {fileID: 539616677, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
@@ -61,11 +64,14 @@ SpriteAtlas:
   - {fileID: -1912284945, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: 726775630, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: -295721097, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
-  - {fileID: 21300000, guid: 5037d5ce3a6c90a44a6c8e9e07d686d6, type: 3}
+  - {fileID: 21300000, guid: 336898ca73cbcf84e8bada1ca192fa0a, type: 3}
   - {fileID: -873325267, guid: eb4b67dffc445c246a8b3a050414235b, type: 3}
   m_PackedSpriteNamesToIndex:
   - Heart
+  - BarV4_ProgressBarBorder
+  - BarV4_ProgressBar
   - PlaceHolder
+  - BarV4_Bar
   - props_0
   - props_1
   - tilemapFloor_4
@@ -74,7 +80,7 @@ SpriteAtlas:
   - tilemapFloor_3
   - tilemapFloor_0
   - tilemapFloor_1
-  - 440-4400240_wall-crack-pixel-art-cracks
+  - BarV5_ProgressBar
   - Triangle_0
   m_RenderDataMap: {}
   m_Tag: Atlas

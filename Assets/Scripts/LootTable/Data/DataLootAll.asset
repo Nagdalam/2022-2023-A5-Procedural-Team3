@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e270f12421fb7b94a8bf35c05d862e71, type: 3}
   m_Name: DataLootAll
   m_EditorClassIdentifier: 
-  dataLoots: []
+  dataLoots:
+  - {fileID: 11400000, guid: 8bdce776257859141874218384323e98, type: 2}
+  - {fileID: 11400000, guid: 81fd9a3fff29227479071f851965eb9d, type: 2}
+  - {fileID: 11400000, guid: f8ade75cfc8004140a52628a61044ca1, type: 2}
+  - {fileID: 11400000, guid: 003e381b455b4bb46848413c32e556a3, type: 2}
+  - {fileID: 11400000, guid: 384b800984d2cea489b3c4bc8e55324c, type: 2}
+  - {fileID: 11400000, guid: 45888fab0d787584892f31f16d73a13e, type: 2}
+  - {fileID: 11400000, guid: c03cb441e287e164998aa14e66a8e6d2, type: 2}
+  - {fileID: 11400000, guid: 4f5bca49c91d7204fb19680ec9282ff5, type: 2}
+  - {fileID: 11400000, guid: ab7c1751e16308e42b6ceabef8a2b047, type: 2}
+  - {fileID: 11400000, guid: 5778f0e1a384f0f46a2522bb304a001f, type: 2}
+  - {fileID: 11400000, guid: 4fe736efcb8399248822a6ce587fef06, type: 2}
+  - {fileID: 11400000, guid: 33ccd30e0fa220646a6d91207727dff9, type: 2}

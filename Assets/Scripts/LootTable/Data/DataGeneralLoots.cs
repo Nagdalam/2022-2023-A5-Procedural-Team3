@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class DataGeneralLoots : ScriptableObject
@@ -22,6 +23,9 @@ public class DataGeneralLoots : ScriptableObject
             }
 
             _currentGeneralGameData = AssetDatabase.LoadAssetAtPath<DataGeneralLoots>("Assets/Scripts/LootTable/Data/DataLootAll.asset");
+
+            EditorUtility.SetDirty(_currentGeneralGameData);
+            AssetDatabase.SaveAssets();
 
             return _currentGeneralGameData;
         }
