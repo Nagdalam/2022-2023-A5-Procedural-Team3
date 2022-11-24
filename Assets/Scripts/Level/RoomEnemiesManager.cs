@@ -9,7 +9,9 @@ public class RoomEnemiesManager : MonoBehaviour
     {
         foreach (var enemy in enemyControllers)
         {
+            
             enemy.enabled = isActive;
+            enemy.player = FindObjectOfType<PlayerController>().transform;
         }
     }
 
@@ -30,18 +32,19 @@ public class RoomEnemiesManager : MonoBehaviour
             Debug.Log("player et enterer");
             SetAllEnemiesInRoomActive(true);
         }
-        if (collision.gameObject.CompareTag("Ennemy"))
+        if (collision.gameObject.CompareTag("Enemies"))
         {
+            Debug.Log("Booyyah");
             enemyControllers.Add(collision.GetComponent<EnemyController>());
         }
     }
 
-    //private void OnTriggerLeave(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("player et enterer");
-    //        SetAllEnemiesInRoomActive(false);
-    //    }
-    //}
+    private void OnTriggerLeave(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("player et enterer");
+            SetAllEnemiesInRoomActive(false);
+        }
+    }
 }

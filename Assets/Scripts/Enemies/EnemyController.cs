@@ -2,7 +2,7 @@
 
 public class EnemyController : MonoBehaviour
 {
-    private Transform player;
+    public Transform player;
     private Rigidbody2DMovement movement;
     public Life life;
     private RoomEnemiesManager enemiesManager;
@@ -26,10 +26,10 @@ public class EnemyController : MonoBehaviour
         {
             enabled = true;
         }
-        //else
-        //enabled = false;
-        
-        
+        else
+            enabled = false;
+
+
     }
 
     //private void OnDisable()
