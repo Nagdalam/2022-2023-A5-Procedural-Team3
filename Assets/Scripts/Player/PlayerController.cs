@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public Life life;
     private Rigidbody2DMovement movement;
     private Shooter[] shooters;
-
+    public GameObject canon;
     
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         {
             var inputDirection = input.ReadValue<Vector2>();
             if (inputDirection.sqrMagnitude <= 1)
-                transform.up = inputDirection;
+                canon.transform.up = inputDirection;
             foreach (var shooter in shooters)
             {
                 shooter.StartShooting();
