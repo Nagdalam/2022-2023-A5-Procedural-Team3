@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 3172543913208597241}
   - component: {fileID: 2924757937228013609}
   - component: {fileID: -4304054284362474380}
+  - component: {fileID: -7337151386152655702}
   m_Layer: 8
   m_Name: RareEnnemy
   m_TagString: Enemies
@@ -186,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e8c91d838e495398a739916ad2c454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 1
 --- !u!114 &3172543913208597241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInvincible: 0
-  startLife: 1
+  startLife: 10
   onHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -233,3 +234,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDelay: 0
   damageOnTouch: 1
+--- !u!114 &-7337151386152655702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419314047606676974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4f61e2105c7a54a86ea0d69dfef549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 1
+  bullet: {fileID: 5485737571027047290, guid: 539b861ac8c027941b259f5d520cf424, type: 3}
+  AmoutBullet: 4
+  speedBullet: 5
+  startFight: 0
