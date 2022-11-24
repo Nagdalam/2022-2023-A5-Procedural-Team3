@@ -15,6 +15,8 @@ public class Stats : MonoBehaviour
     {
         [SerializeField] [Range(0, 100)] public float armor;
         [SerializeField] [Range(0, 10)] public float maxHealth;
+        [SerializeField] public PlayerWeapons currentWeapon;
+
     }
 
     [SerializeField] public SStats stats;
@@ -24,6 +26,7 @@ public class Stats : MonoBehaviour
     {
         initialStats.armor = stats.armor;
         initialStats.maxHealth = stats.maxHealth;
+
     }
 
     protected Coroutine setEnhanceArmorCor = null;
@@ -38,6 +41,12 @@ public class Stats : MonoBehaviour
             /*life.onDeathIE += StopCoroutine;*/
 
         }
+
+        var shooter = gameObject.GetComponentInChildren<Shooter>();
+       /* if (shooter)
+        {
+            shooter.onSwitchWeapon += (weapon) => { setEnhanceWeaponCor = null; };
+        }*/
     }
 
     void Update()
@@ -84,9 +93,36 @@ public class Stats : MonoBehaviour
         {
             stats.maxHealth = bonusHeath.bonusHealth;
             yield return new WaitForSeconds(bonusHeath.Duration);
+            stats.maxHealth = initialMaxHealth;
+            setEnhanceArmorCor = null;
         }
+    }
 
-        stats.maxHealth = initialMaxHealth;
-        setEnhanceArmorCor = null;
+    public void SetEnhancement(BonusWeapon bonusWeapon, Shooter shooter)
+    {
+        if (setEnhanceWeaponCor != null)
+            return;
+
+        var initialWeapon = shooter.currentWeapon;
+        setEnhanceWeaponCor = StartCoroutine(SetEnhancementCoroutine());
+        IEnumerator SetEnhancementCoroutine()
+        {
+            shooter.currentWeapon = bonusWeapon.playerWeapon;
+            shooter.SetAllStat();
+            Debug.Log($"Buffed : {shooter.currentWeapon.weaponFireRate}");
+            yield return new WaitForSeconds(bonusWeapon.Duration);
+            shooter.currentWeapon = initialWeapon;
+            shooter.SetAllStat();
+            Debug.Log($"UnBuffed : {shooter.currentWeapon.weaponFireRate}");
+            setEnhanceWeaponCor = null; 
+
+            /* shooter.SetAllStat(bonusWeapon.playerWeapon);
+             Debug.Log($"Buffed : {shooter.currentWeapon.weaponFireRate}");
+             yield return new WaitForSeconds(bonusWeapon.Duration);
+             shooter.SetAllStat(initialWeapon);
+             Debug.Log($"UnBuffed : {shooter.currentWeapon.weaponFireRate}");
+             setEnhanceWeaponCor = null;*/
+
+        }
     }
 }

@@ -62,5 +62,6 @@ public class DropBar : MonoBehaviour
     public void SetPercentage(float value)
     {
         slider.value = value;
+        percentageText.text = slider.value.ToString();
     }
 }
