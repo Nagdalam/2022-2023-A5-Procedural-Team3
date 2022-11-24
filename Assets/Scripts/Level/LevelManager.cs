@@ -47,9 +47,9 @@ public class LevelManager : MonoBehaviour
 
     private void SetActiveRoom(RoomController newActiveRoom)
     {
-        if (activeRoom != null)
-            activeRoom.SetRoomActive(false);
-        newActiveRoom.SetRoomActive(true);
+        //if (activeRoom != null)
+        //    activeRoom.SetRoomActive(false);
+        //newActiveRoom.SetRoomActive(true);
         activeRoom = newActiveRoom;
     }
 }

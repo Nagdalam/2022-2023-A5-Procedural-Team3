@@ -2,48 +2,51 @@
 
 public class EnemyController : MonoBehaviour
 {
-    private Transform player;
+    public Transform player;
     private Rigidbody2DMovement movement;
     public Life life;
     private RoomEnemiesManager enemiesManager;
     public bool enemyInvok;
-    private EnemyTurret enemyTurret; 
 
     private void Awake()
     {
-        movement = GetComponent<Rigidbody2DMovement>();
-        player = FindObjectOfType<PlayerController>().transform;
-        enemiesManager = GetComponentInParent<RoomEnemiesManager>();
-        enemiesManager.AddEnemyToRoom(this);
-        if(!enemyTurret)
-        enemyTurret= GetComponent<EnemyTurret>();
+        
     }
 
     private void Start()
     {
+        //player = FindObjectOfType<PlayerController>().transform;
+        movement = GetComponent<Rigidbody2DMovement>();
+        //if (GetComponentInParent<RoomEnemiesManager>() != null)
+        //{
+        //    //Debug.Log("Has correct parent");
+        //    //GetComponentInParent<RoomEnemiesManager>().AddEnemyToRoom(this);
+        //}
         if (enemyInvok)
         {
             enabled = true;
         }
         else
-        enabled = false;
+            enabled = false;
+
+
     }
 
-    private void OnDisable()
-    {
-        movement.SetDirection(Vector2.zero);
-    }
+    //private void OnDisable()
+    //{
+    //    movement.SetDirection(Vector2.zero);
+    //}
 
     private void FixedUpdate()
     {
         if (player == null)
             return;
-        enemyTurret.startFight = true;
+
         movement.SetDirection(player.position - transform.position);
     }
 
     private void OnDestroy()
     {
-        enemiesManager.RemoveEnemyFromRoom(this);
+        //GetComponentInParent<RoomEnemiesManager>().RemoveEnemyFromRoom(this);
     }
 }

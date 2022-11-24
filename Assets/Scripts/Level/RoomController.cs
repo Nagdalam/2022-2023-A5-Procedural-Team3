@@ -20,8 +20,8 @@ public class RoomController : MonoBehaviour
         neighbours = levelManager.GetNeighbours(this);
     }
 
-    public void SetRoomActive(bool isActive)
-    {
-        enemiesManager.SetAllEnemiesInRoomActive(isActive);
-    }
+    //public void SetRoomActive(bool isActive)
+    //{
+    //    enemiesManager.SetAllEnemiesInRoomActive(isActive);
+    //}
 }
