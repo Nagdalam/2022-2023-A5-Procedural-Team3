@@ -161,6 +161,8 @@ MonoBehaviour:
   bullet: {fileID: 5485737571027047290, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
   AmoutBullet: 4
   speedBullet: 10
+  teleporter: {fileID: 1574158334873204960, guid: 403c3d2638d237341a77db798cb28e0e, type: 3}
+  pistol: {fileID: 11400000, guid: 72ce67b2217baa0449d3db761a8396c2, type: 2}
 --- !u!114 &6571721062800088811
 MonoBehaviour:
   m_ObjectHideFlags: 0

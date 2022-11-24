@@ -26,6 +26,8 @@ public class FirstBossBattle : MonoBehaviour
     private float AmoutBullet = 12;
     [SerializeField]
     private float speedBullet;
+    public GameObject teleporter;
+    public PlayerWeapons pistol;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +84,15 @@ public class FirstBossBattle : MonoBehaviour
         {
             Debug.Log("Start fight");
             startFight= true;
+        }
+    }
+
+    void OnDestroy()
+    {
+        Instantiate(teleporter, transform.position, Quaternion.identity);
+        if(FindObjectOfType<PlayerController>().canon.GetComponent<Shooter>().currentWeapon == pistol)
+        {
+            Destroy(FindObjectOfType<BigDoor>().gameObject);
         }
     }
 }

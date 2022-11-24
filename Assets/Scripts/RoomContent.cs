@@ -14,6 +14,8 @@ public class RoomContent : MonoBehaviour
     public CinemachineVirtualCamera vcam;
 
     private ItemSpawner spawner;
+    public GameObject bigDoor;
+    bool hasBigDoor = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,16 @@ public class RoomContent : MonoBehaviour
             {
                 doorDown.SetActive(false);
             }
+            else if (door == Room.doorDirection.BigDoor)
+            {
+                bigDoor.SetActive(true);
+                hasBigDoor = true;
+            }
+        }
+
+        if(hasBigDoor == false)
+        {
+            Destroy(bigDoor);
         }
 
         if(myRoom.type == Room.roomType.Secret)

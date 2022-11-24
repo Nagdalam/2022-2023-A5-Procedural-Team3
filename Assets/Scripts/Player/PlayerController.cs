@@ -84,4 +84,12 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.color = oldColor;
         }
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            life.isInvincible = !life.isInvincible;
+        }
+    }
 }

@@ -28,6 +28,8 @@ public class SecondBossBattel : MonoBehaviour
     [SerializeField]
     private float speedBullet;
     private PlayerController player;
+    public GameObject teleporter;
+    public PlayerWeapons pistol;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,5 +101,15 @@ public class SecondBossBattel : MonoBehaviour
     {
         if (player && startFight)
             movement.SetDirection(player.transform.position - transform.position);
+    }
+
+    void OnDestroy()
+    {
+        Instantiate(teleporter, transform.position, Quaternion.identity);
+        if (FindObjectOfType<PlayerController>().canon.GetComponent<Shooter>().currentWeapon == pistol)
+        {
+            Debug.Log("Player weak");
+            Destroy(FindObjectOfType<BigDoor>().gameObject);
+        }
     }
 }
