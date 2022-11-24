@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5537170825705704794}
   - component: {fileID: 5537170825705704793}
   m_Layer: 3
-  m_Name: SpawnerDefault
+  m_Name: SpawnerItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,14 +71,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfe0a6d79b4a3914599d391846945cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemList:
-  - item: {fileID: 11400000, guid: b614e421307dcad4ba41115c4fb30465, type: 2}
-    nb: 5
-    rarity: 100
+  itemList: []
   itemGameObjectList:
-  - item: {fileID: 7143052517036596304, guid: 11b8838a4c6ce77419cc01543c075555, type: 3}
-    nb: 2
+  - item: {fileID: 7143052517036596304, guid: 140e5d167e223184f8b09cb2facfe4f8, type: 3}
+    nb: 1
     rarity: 100
+  - item: {fileID: 7143052517036596304, guid: fafb877a873f5e945937d9c36a5ac408, type: 3}
+    nb: 2
+    rarity: 50
   doorPrefab: {fileID: 536000874044555347, guid: 8108273a51c04d74d844b9290975e6c9, type: 3}
   openDoorPrefab: {fileID: 6217952808718131520, guid: 82a2d0ac221987d45b9f5392fafd301e, type: 3}
   distanceMinBetweenObjects: 1
