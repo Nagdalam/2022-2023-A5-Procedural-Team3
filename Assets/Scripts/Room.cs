@@ -5,7 +5,7 @@ using UnityEngine;
 public class Room  
 {
     
-    public enum doorDirection { Up, Left, Right, Down};
+    public enum doorDirection { Up, Left, Right, Down, BigDoor};
     public enum roomType {Boss, Item, Regular, Empty, Spawn, Miniboss, SecretEntrance, Secret, Recovery};
     public List<Room.doorDirection> doors = new List<Room.doorDirection>();
     public roomType type;

@@ -67,6 +67,7 @@ public class RoomGenerator : MonoBehaviour
         roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Down);
         roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Left);
         roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Right);
+        roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.BigDoor);
         roomLayout[(int)firstRoom.x + 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 1);
         roomLayout[(int)firstRoom.x - 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 2);
         roomLayout[(int)firstRoom.x, (int)firstRoom.y + 1] = new Room(GenerateRandomRoomType(), 3);

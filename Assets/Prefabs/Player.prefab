@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabBullet: {fileID: 5485737571027047290, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
   bullet: {fileID: 5853427791071713410, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
-  currentWeapon: {fileID: 11400000, guid: fded1da11d2ee334aaddd84abd444754, type: 2}
+  currentWeapon: {fileID: 11400000, guid: 72ce67b2217baa0449d3db761a8396c2, type: 2}
   fireRatePercent: 0
   damageBulletPercent: 0
   areaBulletPercent: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb09905c1d4494398edf782503cfe3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: {fileID: 0}
+  life: {fileID: 785693504}
   canon: {fileID: 332741117634931998}
 --- !u!114 &1402205489
 MonoBehaviour:
