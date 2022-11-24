@@ -7,6 +7,7 @@ public class RoomContent : MonoBehaviour
     [SerializeField] public Room myRoom;
     public SpriteRenderer mySprite;
     public GameObject doorLeft, doorRight, doorUp, doorDown;
+    public GameObject secretReward;
 
     private ItemSpawner spawner;
 
@@ -55,6 +56,15 @@ public class RoomContent : MonoBehaviour
                 doorDown.SetActive(false);
             }
         }
+
+        if(myRoom.type == Room.roomType.Secret)
+        {
+            secretReward.SetActive(true);
+        }
+        //else if (myRoom.type == Room.roomType.Spawn)
+        //{
+        //    secretReward.SetActive(true);
+        //}
     }
 
     // Update is called once per frame
