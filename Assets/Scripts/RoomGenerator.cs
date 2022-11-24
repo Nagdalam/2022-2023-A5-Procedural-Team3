@@ -61,12 +61,12 @@ public class RoomGenerator : MonoBehaviour
         //G�n�ration vers Spawn
 
         TracePath(new Vector2((int)firstRoom.x + 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 1);
-        TracePath(new Vector2((int)firstRoom.x - 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 2);
-        TracePath(new Vector2((int)firstRoom.x, (int)firstRoom.y + 1), pathLength, Room.roomType.Spawn, 3);
-        if(error == true)
+        TracePath(new Vector2((int)firstRoom.x - 1, (int)firstRoom.y), pathLength, Room.roomType.Item, 2);
+        TracePath(new Vector2((int)firstRoom.x, (int)firstRoom.y + 1), pathLength, Room.roomType.Item, 3);
+        if (error == true)
         {
-            CreateDungeon();
             error = false;
+            CreateDungeon();
             return;
         }
         //TracePath(firstRoom, pathLength, Room.roomType.Item, 3);
@@ -76,9 +76,9 @@ public class RoomGenerator : MonoBehaviour
         {
             for (int j = 0; j < layoutHeight; j++)
             {
-                if (roomLayout[i,j] !=null && CheckIfNeighboursFull( new Vector2(i,j)) == false && secretRoomCreated == false)
+                if (roomLayout[i, j] != null && CheckIfNeighboursFull(new Vector2(i, j)) == false && secretRoomCreated == false)
                 {
-                    if (roomLayout[i,j].type == Room.roomType.Regular || roomLayout[i, j].type == Room.roomType.Miniboss || roomLayout[i, j].type == Room.roomType.Recovery)
+                    if (roomLayout[i, j].type == Room.roomType.Regular || roomLayout[i, j].type == Room.roomType.Miniboss || roomLayout[i, j].type == Room.roomType.Recovery)
                     {
                         secretRoomCreated = true;
                         roomLayout[i, j].type = Room.roomType.SecretEntrance;
@@ -117,9 +117,27 @@ public class RoomGenerator : MonoBehaviour
                     GameObject newRoom = Instantiate(defaultRoom, new Vector3(i * roomDimension.x, j * roomDimension.y, 0), Quaternion.identity);
                     newRoom.GetComponent<RoomContent>().myRoom = roomLayout[i, j];
                     newRoom.transform.parent = gameObject.transform;
-                    if (roomLayout[i, j].type != Room.roomType.Spawn)
+                    if (roomLayout[i, j].type != Room.roomType.Spawn && roomLayout[i, j].type != Room.roomType.Secret && roomLayout[i, j].type != Room.roomType.SecretEntrance)
                     {
-                        GameObject itemSpawn = Instantiate(spawner[0], newRoom.transform);
+                        GameObject itemSpawn;
+                        if (roomLayout[i, j].type == Room.roomType.Regular)
+                            itemSpawn = Instantiate(spawner[0], newRoom.transform);
+                        else if (roomLayout[i, j].type == Room.roomType.Recovery)
+                            itemSpawn = Instantiate(spawner[1], newRoom.transform);
+                        else if (roomLayout[i, j].type == Room.roomType.Item)
+                            itemSpawn = Instantiate(spawner[2], newRoom.transform);
+                        else if (roomLayout[i, j].type == Room.roomType.Miniboss)
+                            itemSpawn = Instantiate(spawner[3], newRoom.transform);
+                        else if (roomLayout[i, j].type == Room.roomType.Boss)
+                            itemSpawn = Instantiate(spawner[4], newRoom.transform);
+                        else
+                        {
+
+                            Debug.LogError("WTF");
+                            break;
+                        }
+
+                        itemSpawn.transform.localPosition = new Vector3(0, -2, 0);
                         newRoom.GetComponent<RoomContent>().SetSpawner(itemSpawn.GetComponent<ItemSpawner>());
                         if (i - 1 >= 0 && roomLayout[i - 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i - 1, j].pathID || roomLayout[i - 1, j].pathID == 0) && roomLayout[i - 1, j].type == Room.roomType.Spawn)
                             itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Left);
@@ -344,7 +362,7 @@ public class RoomGenerator : MonoBehaviour
             typeProbList.Remove(Room.roomType.Miniboss);
             return Room.roomType.Miniboss;
         }
-        return Room.roomType.Empty;
+        return Room.roomType.Regular;
     }
 
     bool CheckIfNeighboursFull(Vector2 tile)

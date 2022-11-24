@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8453474159464565878}
   - component: {fileID: 4817966937269747952}
   - component: {fileID: -8876323615456344267}
-  - component: {fileID: 7588056331857844043}
+  - component: {fileID: 5605316886055438578}
   m_Layer: 9
-  m_Name: LifePoint
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 1517254871
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cf315a12087b67c4dab44aecb3d72b9d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45fbce5557b757d4abdc77ae5f6a478c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupType: 0
   healAmount: 1
---- !u!58 &7588056331857844043
-CircleCollider2D:
+--- !u!61 &5605316886055438578
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,6 +113,16 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.028922647, y: -0.26608872}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.15, y: 2.5}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.49999997
+  m_Size: {x: 1.7732794, y: 1.1117104}
+  m_EdgeRadius: 0
