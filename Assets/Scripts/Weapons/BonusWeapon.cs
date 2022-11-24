@@ -26,7 +26,7 @@ public class BonusWeapon : BonusStat
         EnhanceWeapon(shooter);*/
     }
 
-    void EnhanceWeapon(Shooter shooter)
+    /*void EnhanceWeapon(Shooter shooter)
     {
         if (setEnhanceWeaponCor != null)
             return;
@@ -39,5 +39,5 @@ public class BonusWeapon : BonusStat
             yield return new WaitForSeconds(Duration);
             shooter.SetAllStat(initialWeapon);
         }
-    }
+    }*/
 }
