@@ -14,80 +14,189 @@ public class RoomGenerator : MonoBehaviour
     public int regularProb, minibossProb, recovProb;
     public int pathLength;
     public Vector2 roomDimension;
+    bool error = false;
 
     public List<GameObject> spawner;
     public GameObject openDoorPrefab;
 
-    void Start()
+    void Update()
     {
-        //roomLayout = new Room[layoutHeight, layoutWidth];
-        //for (int x = 0; x < regularProb; x++)
-        //{
-        //    typeProbList.Add(Room.roomType.Regular);
-        //}
-        //for (int y = 0; y < minibossProb; y++)
-        //{
-        //    typeProbList.Add(Room.roomType.Miniboss);
-        //}
-        //for (int z = 0; z < recovProb; z++)
-        //{
-        //    typeProbList.Add(Room.roomType.Miniboss);
-        //}
-        //roomLayout[(int)firstRoom.x, (int)firstRoom.y] = new Room(Room.roomType.Boss, 0);
-        //roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Up);
-        //roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Down);
-        //roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Left);
-        //roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Right);
-        //roomLayout[(int)firstRoom.x - 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 1);
-        //roomLayout[(int)firstRoom.x + 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 2);
-        //roomLayout[(int)firstRoom.x, (int)firstRoom.y + 1] = new Room(GenerateRandomRoomType(), 3);
-        //roomLayout[(int)firstRoom.x, (int)firstRoom.y-1] = new Room(Room.roomType.Boss, 4);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            CreateDungeon();
+        }
     }
+
+    public void CreateDungeon()
+    {
+        foreach (Transform child in gameObject.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        roomLayout = new Room[layoutHeight, layoutWidth];
+        for (int x = 0; x < regularProb; x++)
+        {
+            typeProbList.Add(Room.roomType.Regular);
+        }
+        for (int y = 0; y < minibossProb; y++)
+        {
+            typeProbList.Add(Room.roomType.Miniboss);
+        }
+        for (int z = 0; z < recovProb; z++)
+        {
+            typeProbList.Add(Room.roomType.Miniboss);
+        }
+        roomLayout[(int)firstRoom.x, (int)firstRoom.y] = new Room(Room.roomType.Boss, 0);
+        roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Up);
+        roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Down);
+        roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Left);
+        roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Right);
+        roomLayout[(int)firstRoom.x + 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 1);
+        roomLayout[(int)firstRoom.x - 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 2);
+        roomLayout[(int)firstRoom.x, (int)firstRoom.y + 1] = new Room(GenerateRandomRoomType(), 3);
+        roomLayout[(int)firstRoom.x, (int)firstRoom.y - 1] = new Room(Room.roomType.Boss, 4);
+
 
         //Instantiate(testStart, new Vector3(10, 10, 0), Quaternion.identity);
         //G�n�ration vers Spawn
 
-        //TracePath(new Vector2((int)firstRoom.x - 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 1);
-        ////TracePath(new Vector2((int)firstRoom.x + 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 2);
-        ////TracePath(new Vector2((int)firstRoom.x, (int)firstRoom.y + 1), pathLength, Room.roomType.Spawn, 3);
-        ////TracePath(firstRoom, pathLength, Room.roomType.Item, 3);
-        ////TracePath(firstRoom, pathLength, Room.roomType.Item, 4);
-        //for (int i = 0; i < layoutWidth; i++)
-        //{
+        TracePath(new Vector2((int)firstRoom.x + 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 1);
+        TracePath(new Vector2((int)firstRoom.x - 1, (int)firstRoom.y), pathLength, Room.roomType.Item, 2);
+        TracePath(new Vector2((int)firstRoom.x, (int)firstRoom.y + 1), pathLength, Room.roomType.Item, 3);
+        if (error == true)
+        {
+            error = false;
+            CreateDungeon();
+            return;
+        }
+        //TracePath(firstRoom, pathLength, Room.roomType.Item, 3);
+        //TracePath(firstRoom, pathLength, Room.roomType.Item, 4);
+        bool secretRoomCreated = false;
+        for (int i = 0; i < layoutWidth; i++)
+        {
+            for (int j = 0; j < layoutHeight; j++)
+            {
+                if (roomLayout[i, j] != null && CheckIfNeighboursFull(new Vector2(i, j)) == false && secretRoomCreated == false)
+                {
+                    if (roomLayout[i, j].type == Room.roomType.Regular || roomLayout[i, j].type == Room.roomType.Miniboss || roomLayout[i, j].type == Room.roomType.Recovery)
+                    {
+                        secretRoomCreated = true;
+                        roomLayout[i, j].type = Room.roomType.SecretEntrance;
+                        TracePath(new Vector2(i, j), 1, Room.roomType.Secret, 12);
+                    }
+                }
+            }
+        }
 
-        //    for (int j = 0; j < layoutHeight; j++)
-        //    {
 
-        //        if (roomLayout[i, j] != null)
-        //        {
-        //            if (i - 1 >= 0 && roomLayout[i - 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i - 1, j].pathID || roomLayout[i - 1, j].pathID == 0))
-        //            {
-        //                roomLayout[i, j].doors.Add(Room.doorDirection.Left);
-        //            }
-        //            //            if (i + 1 < layoutWidth - 1 && roomLayout[i + 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i + 1, j].pathID || roomLayout[i + 1, j].pathID == 0))
-        //            //            {
-        //            //                roomLayout[i, j].doors.Add(Room.doorDirection.Right);
-        //            //            }
-        //            //            if (j-1 >= 0 && roomLayout[i, j - 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j - 1].pathID || roomLayout[i, j - 1].pathID == 0))
-        //            //            {
-        //            //                roomLayout[i, j].doors.Add(Room.doorDirection.Down);
-        //            //            }
-        //            //            if (j + 1 < layoutHeight - 1 && roomLayout[i, j + 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j + 1].pathID || roomLayout[i, j + 1].pathID == 0))
-        //            //            {
-        //            //                roomLayout[i, j].doors.Add(Room.doorDirection.Up);
-        //            //            }
-        //            //            //Debug.Log("Generate room");
-        //            //            GameObject newRoom = Instantiate(defaultRoom, new Vector3(i * roomDimension.x, j * roomDimension.y, 0), Quaternion.identity);
-        //            //            newRoom.GetComponent<RoomContent>().myRoom = roomLayout[i, j];
-        //            //        }
+        for (int i = 0; i < layoutWidth; i++)
+        {
 
-        //            //    }
-        //            //}
+            for (int j = 0; j < layoutHeight; j++)
+            {
 
-        //        }
-        //    }
-        //}
-    //}
+                if (roomLayout[i, j] != null)
+                {
+                    if (i - 1 >= 0 && roomLayout[i - 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i - 1, j].pathID || roomLayout[i - 1, j].pathID == 0))
+                    {
+                        roomLayout[i, j].doors.Add(Room.doorDirection.Left);
+                    }
+                    if (i + 1 < layoutWidth - 1 && roomLayout[i + 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i + 1, j].pathID || roomLayout[i + 1, j].pathID == 0))
+                    {
+                        roomLayout[i, j].doors.Add(Room.doorDirection.Right);
+                    }
+                    if (j - 1 >= 0 && roomLayout[i, j - 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j - 1].pathID || roomLayout[i, j - 1].pathID == 0))
+                    {
+                        roomLayout[i, j].doors.Add(Room.doorDirection.Down);
+                    }
+                    if (j + 1 < layoutHeight - 1 && roomLayout[i, j + 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j + 1].pathID || roomLayout[i, j + 1].pathID == 0))
+                    {
+                        roomLayout[i, j].doors.Add(Room.doorDirection.Up);
+                    }
+                    //Debug.Log("Generate room");
+                    GameObject newRoom = Instantiate(defaultRoom, new Vector3(i * roomDimension.x, j * roomDimension.y, 0), Quaternion.identity);
+                    newRoom.GetComponent<RoomContent>().myRoom = roomLayout[i, j];
+                    newRoom.transform.parent = gameObject.transform;
+                    if (roomLayout[i, j].type != Room.roomType.Spawn && roomLayout[i, j].type != Room.roomType.Secret && roomLayout[i, j].type != Room.roomType.SecretEntrance)
+                    {
+                        GameObject itemSpawn;
+                        if (roomLayout[i, j].type == Room.roomType.Regular)
+                            itemSpawn = Instantiate(spawner[0], newRoom.transform);
+                        else if (roomLayout[i, j].type == Room.roomType.Recovery)
+                            itemSpawn = Instantiate(spawner[1], newRoom.transform);
+                        else if (roomLayout[i, j].type == Room.roomType.Item)
+                            itemSpawn = Instantiate(spawner[2], newRoom.transform);
+                        else if (roomLayout[i, j].type == Room.roomType.Miniboss)
+                            itemSpawn = Instantiate(spawner[3], newRoom.transform);
+                        else if (roomLayout[i, j].type == Room.roomType.Boss)
+                            itemSpawn = Instantiate(spawner[4], newRoom.transform);
+                        else
+                        {
+
+                            Debug.LogError("WTF");
+                            break;
+                        }
+
+                        itemSpawn.transform.localPosition = new Vector3(0, -2, 0);
+                        newRoom.GetComponent<RoomContent>().SetSpawner(itemSpawn.GetComponent<ItemSpawner>());
+                        if (i - 1 >= 0 && roomLayout[i - 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i - 1, j].pathID || roomLayout[i - 1, j].pathID == 0) && roomLayout[i - 1, j].type == Room.roomType.Spawn)
+                            itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Left);
+                        if (i + 1 < layoutWidth - 1 && roomLayout[i + 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i + 1, j].pathID || roomLayout[i + 1, j].pathID == 0) && roomLayout[i + 1, j].type == Room.roomType.Spawn)
+                            itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Right);
+                        if (j - 1 >= 0 && roomLayout[i, j - 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j - 1].pathID || roomLayout[i, j - 1].pathID == 0) && roomLayout[i, j - 1].type == Room.roomType.Spawn)
+                            itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Down);
+                        if (j + 1 < layoutHeight - 1 && roomLayout[i, j + 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j + 1].pathID || roomLayout[i, j + 1].pathID == 0) && roomLayout[i, j + 1].type == Room.roomType.Spawn)
+                            itemSpawn.GetComponent<ItemSpawner>().DeleteSpawnDoor(Room.doorDirection.Up);
+                    }
+                    else
+                    {
+                        GameObject tempGameObject;
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Left))
+                        {
+                            tempGameObject = Instantiate(openDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            tempGameObject.transform.SetLocalPositionAndRotation(new Vector3(-9.5f, -2.5f, 0), Quaternion.identity);
+                        }
+
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Right))
+                        {
+                            tempGameObject = Instantiate(openDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            tempGameObject.transform.SetLocalPositionAndRotation(new Vector3(9.5f, -2.5f, 0), Quaternion.identity);
+                        }
+
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Down))
+                        {
+                            tempGameObject = Instantiate(openDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            tempGameObject.transform.SetLocalPositionAndRotation(new Vector3(0.5f, -6.5f, 0), Quaternion.identity);
+                        }
+                        if (roomLayout[i, j].doors.Contains(Room.doorDirection.Up))
+                        {
+                            tempGameObject = Instantiate(openDoorPrefab, newRoom.GetComponent<RoomContent>().transform);
+                            tempGameObject.transform.SetLocalPositionAndRotation(new Vector3(0.5f, 2.5f, 0), Quaternion.identity);
+                        }
+                    }
+                }
+            }
+        }
+
+        LockedDoor[] _door = GetComponentsInChildren<LockedDoor>();
+        List<int> indexCheck = new List<int>();
+        for (int i = 0; i < _door.Length; ++i)
+        {
+            for (int j = 0; j < _door.Length; ++j)
+            {
+                if (!indexCheck.Contains(i) && !indexCheck.Contains(j) && i != j)
+                {
+                    if (Vector3.Distance(_door[i].transform.position, _door[j].transform.position) <= 1)
+                    {
+                        indexCheck.Add(i);
+                        indexCheck.Add(j);
+                        _door[i].SetConnectedDoor(_door[j]);
+                        _door[j].SetConnectedDoor(_door[i]);
+                    }
+                }
+            }
+        }
+    }
 
     void TracePath(Vector2 origin, int length, Room.roomType lastRoomType, int pathID)
     {
@@ -112,9 +221,9 @@ public class RoomGenerator : MonoBehaviour
                 {
                     Debug.Log("Abort");
                     roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
-                    CreateDungeon();
+                    error = true;
                     return;
-                    
+
                 }
                 int directionChosen = UnityEngine.Random.Range(0, direction.Count);
                 switch (directionChosen)
@@ -253,7 +362,7 @@ public class RoomGenerator : MonoBehaviour
             typeProbList.Remove(Room.roomType.Miniboss);
             return Room.roomType.Miniboss;
         }
-        return Room.roomType.Empty;
+        return Room.roomType.Regular;
     }
 
     bool CheckIfNeighboursFull(Vector2 tile)
@@ -269,78 +378,7 @@ public class RoomGenerator : MonoBehaviour
         return true;
     }
 
-    public void CreateDungeon()
-    {
-        foreach (Transform child in gameObject.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-        roomLayout = new Room[layoutHeight, layoutWidth];
-        for (int x = 0; x < regularProb; x++)
-        {
-            typeProbList.Add(Room.roomType.Regular);
-        }
-        for (int y = 0; y < minibossProb; y++)
-        {
-            typeProbList.Add(Room.roomType.Miniboss);
-        }
-        for (int z = 0; z < recovProb; z++)
-        {
-            typeProbList.Add(Room.roomType.Miniboss);
-        }
-        roomLayout[(int)firstRoom.x, (int)firstRoom.y] = new Room(Room.roomType.Boss, 0);
-        roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Up);
-        roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Down);
-        roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Left);
-        roomLayout[(int)firstRoom.x, (int)firstRoom.y].doors.Add(Room.doorDirection.Right);
-        roomLayout[(int)firstRoom.x + 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 1);
-        roomLayout[(int)firstRoom.x - 1, (int)firstRoom.y] = new Room(GenerateRandomRoomType(), 2);
-        roomLayout[(int)firstRoom.x, (int)firstRoom.y + 1] = new Room(GenerateRandomRoomType(), 3);
-        roomLayout[(int)firstRoom.x, (int)firstRoom.y - 1] = new Room(Room.roomType.Boss, 4);
 
-
-        //Instantiate(testStart, new Vector3(10, 10, 0), Quaternion.identity);
-        //G�n�ration vers Spawn
-
-        TracePath(new Vector2((int)firstRoom.x + 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 1);
-        TracePath(new Vector2((int)firstRoom.x - 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 2);
-        TracePath(new Vector2((int)firstRoom.x, (int)firstRoom.y + 1), pathLength, Room.roomType.Spawn, 3);
-        //TracePath(firstRoom, pathLength, Room.roomType.Item, 3);
-        //TracePath(firstRoom, pathLength, Room.roomType.Item, 4);
-        for (int i = 0; i < layoutWidth; i++)
-        {
-
-            for (int j = 0; j < layoutHeight; j++)
-            {
-
-                if (roomLayout[i, j] != null)
-                {
-                    if (i - 1 >= 0 && roomLayout[i - 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i - 1, j].pathID || roomLayout[i - 1, j].pathID == 0))
-                    {
-                        roomLayout[i, j].doors.Add(Room.doorDirection.Left);
-                    }
-                    if (i + 1 < layoutWidth - 1 && roomLayout[i + 1, j] != null && (roomLayout[i, j].pathID == roomLayout[i + 1, j].pathID || roomLayout[i + 1, j].pathID == 0))
-                    {
-                        roomLayout[i, j].doors.Add(Room.doorDirection.Right);
-                    }
-                    if (j - 1 >= 0 && roomLayout[i, j - 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j - 1].pathID || roomLayout[i, j - 1].pathID == 0))
-                    {
-                        roomLayout[i, j].doors.Add(Room.doorDirection.Down);
-                    }
-                    if (j + 1 < layoutHeight - 1 && roomLayout[i, j + 1] != null && (roomLayout[i, j].pathID == roomLayout[i, j + 1].pathID || roomLayout[i, j + 1].pathID == 0))
-                    {
-                        roomLayout[i, j].doors.Add(Room.doorDirection.Up);
-                    }
-                    //Debug.Log("Generate room");
-                    GameObject newRoom = Instantiate(defaultRoom, new Vector3(i * roomDimension.x, j * roomDimension.y, 0), Quaternion.identity);
-                    newRoom.GetComponent<RoomContent>().myRoom = roomLayout[i, j];
-                    newRoom.transform.parent = gameObject.transform;
-                }
-
-            }
-        }
-
-    }
 
     //bool CheckIfNextToTile(Vector2 tileToExamine, Vector2 tileToAvoid)
     //{

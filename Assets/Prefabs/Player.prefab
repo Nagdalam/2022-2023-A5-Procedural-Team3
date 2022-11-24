@@ -44,8 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3aef6617214c38978e9ca65dff121d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabBullet: {fileID: 5485737571027047290, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
   bullet: {fileID: 5853427791071713410, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
-  fireDelay: 0.8
+  currentWeapon: {fileID: 0}
+  fireRatePercent: 0
+  damageBulletPercent: 0
+  areaBulletPercent: 0
+  speedBulletPercent: 0
+  fireRateResult: 0
+  damageBulletResult: 0
+  areaBulletResult: 0
+  spreadBulletResult: 0
+  speedBulletResult: 0
+  amountBulletResult: 0
 --- !u!1 &6388184427874494322
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +272,46 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 14f24a2b-8661-4caf-b800-ef64d1d02627
     m_ActionName: Player/InstaDie[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ba91e98-926f-4340-83b4-10f7d8bafae6
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f2ed695d-fb68-41d9-80fd-760262b6adfe
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d1d3d416-2fb1-4e68-a37d-a116a00d4f6d
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 30aba9f7-a497-4d2e-855e-5e1248f96482
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3c71534b-2100-4317-86d8-d82d62a39b58
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cd2257f2-1946-495a-9b85-7444657eb053
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8ade30d6-01d5-4e38-8559-8ddd6d73b8c7
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9b68fd52-0116-4232-b4ed-fc0b922de1ce
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7be6d6d3-fb8e-4faa-8e98-c29ae6964ede
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 85b78d03-ae04-40bb-bf2a-64434d5573f8
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -305,21 +356,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 0
   startLife: 5
-  onDamageTaken:
+  onHealthChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6519666751308008164}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: ChangeColor
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2081491002
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,19 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon : Pickup
 {
     public PlayerWeapons playerWeapon = null;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnTriggerEnter2D(Collider2D col)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        var shooter = col.GetComponentInChildren<Shooter>();
     }
 }

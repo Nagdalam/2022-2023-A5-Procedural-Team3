@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a26bfa1e68ae3f48b67e8a5f2197b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csvFile: {fileID: 0}
+  csvFile: {fileID: 4900000, guid: b3ea347b7e379c64da2170a834509688, type: 3}
   dataGeneralLoots: {fileID: 11400000, guid: 109a00287d607d4419255e62265e22a8, type: 2}
 --- !u!114 &144140390
 MonoBehaviour:
@@ -60,4 +60,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable:
-  - {fileID: 11400000, guid: 1b293ff6eba61c84bb1f55c82585271f, type: 2}
+  - {fileID: 11400000, guid: 69b81ebfd8572324fb2764084f4bb355, type: 2}

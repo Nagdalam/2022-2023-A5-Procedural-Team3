@@ -7,6 +7,8 @@ public class RoomContent : MonoBehaviour
     [SerializeField] public Room myRoom;
     public SpriteRenderer mySprite;
     public GameObject doorLeft, doorRight, doorUp, doorDown;
+    public GameObject secretReward;
+    public GameObject player;
 
     private ItemSpawner spawner;
 
@@ -55,6 +57,25 @@ public class RoomContent : MonoBehaviour
                 doorDown.SetActive(false);
             }
         }
+
+        if(myRoom.type == Room.roomType.Secret)
+        {
+            secretReward.SetActive(true);
+        }
+        if(myRoom.type == Room.roomType.Spawn)
+        {
+            GameObject newPlayer = Instantiate(player, secretReward.transform.position, Quaternion.identity);
+            newPlayer.transform.parent = gameObject.transform;
+        }
+        if (myRoom.type == Room.roomType.Boss)
+        {
+            Debug.Log("Boss");
+        }
+        if (myRoom.type == Room.roomType.Empty)
+        {
+            Debug.Log("Empty");
+        }
+
     }
 
     // Update is called once per frame

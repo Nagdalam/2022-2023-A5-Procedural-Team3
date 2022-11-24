@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4663567902518177394}
   - component: {fileID: -804121615803950598}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: MachineGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f014f4eba18a7499b6e9b8e23dcf6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWeapon: {fileID: 11400000, guid: 72ce67b2217baa0449d3db761a8396c2, type: 2}
+  playerWeapon: {fileID: 11400000, guid: fded1da11d2ee334aaddd84abd444754, type: 2}

@@ -36,10 +36,10 @@ public class ItemSpawner : MonoBehaviour
     public int comptToSpawn;
     public bool showGizmo;
     //public Room _room;
-    private Vector3 rightDoorPosition = new Vector3(9.5f, -2.5f, 0);
-    private Vector3 leftDoorPosition = new Vector3(-9.5f, -2.5f, 0);
-    private Vector3 upDoorPosition = new Vector3(0.5f, 2.5f, 0);
-    private Vector3 downDoorPosition = new Vector3(0.5f, -6.5f, 0);
+    private Vector3 rightDoorPosition = new Vector3(9.5f, -0.5f, 0);
+    private Vector3 leftDoorPosition = new Vector3(-9.5f, -0.5f, 0);
+    private Vector3 upDoorPosition = new Vector3(0.5f, 4.5f, 0);
+    private Vector3 downDoorPosition = new Vector3(0.5f, -4.5f, 0);
 
     private void Awake()
     {
