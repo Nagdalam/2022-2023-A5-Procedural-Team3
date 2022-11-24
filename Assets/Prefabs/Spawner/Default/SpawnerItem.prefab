@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 5537170825705704792}
   - component: {fileID: 5537170825705704794}
   - component: {fileID: 5537170825705704793}
-  - component: {fileID: -2334980154147541400}
-  m_Layer: 12
-  m_Name: SpawnerBoss
+  m_Layer: 3
+  m_Name: SpawnerItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +43,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -74,8 +73,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList: []
   itemGameObjectList:
-  - item: {fileID: 4628493913935185715, guid: 1226812f9bfa60344bea9ce95fcd9100, type: 3}
+  - item: {fileID: 7143052517036596304, guid: 140e5d167e223184f8b09cb2facfe4f8, type: 3}
     nb: 1
+    rarity: 100
+  - item: {fileID: 7143052517036596304, guid: fafb877a873f5e945937d9c36a5ac408, type: 3}
+    nb: 2
+    rarity: 50
+  - item: {fileID: 7143052517036596304, guid: 11b8838a4c6ce77419cc01543c075555, type: 3}
+    nb: 3
     rarity: 100
   doorPrefab: {fileID: 536000874044555347, guid: 8108273a51c04d74d844b9290975e6c9, type: 3}
   openDoorPrefab: {fileID: 6217952808718131520, guid: 82a2d0ac221987d45b9f5392fafd301e, type: 3}
@@ -83,15 +88,3 @@ MonoBehaviour:
   distanceFromDoor: 3
   comptToSpawn: 20
   showGizmo: 0
---- !u!114 &-2334980154147541400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5537170825705704791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7a2c53d082f47b19ebacee1294d9473, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

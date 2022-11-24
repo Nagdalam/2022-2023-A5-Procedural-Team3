@@ -23,7 +23,7 @@ public class BulletController : InflictDamage
         Debug.Log(collision.gameObject.tag);
         if (!collision.gameObject.CompareTag(_parentName))
         {
-            if (bulletSecretRoom && collision.gameObject.layer == LayerMask.GetMask("SecretDoor"))
+            if (bulletSecretRoom && collision.gameObject.CompareTag("Secret"))
             {
                 Destroy(collision.gameObject);
             }
@@ -33,7 +33,6 @@ public class BulletController : InflictDamage
                 life.TakeDamage(damageOnTouch);
             }
             
-
             Destroy(gameObject);
         }
         

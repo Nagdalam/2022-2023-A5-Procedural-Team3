@@ -19,11 +19,11 @@ public class BonusWeapon : BonusStat
             Destroy(gameObject);
         }
 
-     /*   var shooter = col.GetComponentInChildren<Shooter>();
-        if (!shooter)
-            return;
+        /*   var shooter = col.GetComponentInChildren<Shooter>();
+           if (!shooter)
+               return;
 
-        EnhanceWeapon(shooter);*/
+           EnhanceWeapon(shooter);*/
     }
 
     /*void EnhanceWeapon(Shooter shooter)
