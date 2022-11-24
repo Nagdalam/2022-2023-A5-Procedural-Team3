@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         var neighbours = new RoomController[doors.Length];
         for (var i = 0; i < doors.Length; i++)
         {
-            neighbours[i] = doors[i].connectedDoor.GetComponentInParent<RoomController>();
+            /*neighbours[i] = doors[i].connectedDoor.GetComponentInParent<RoomController>();*/
         }
         return neighbours;
     }
