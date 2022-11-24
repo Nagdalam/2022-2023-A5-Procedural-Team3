@@ -66,8 +66,11 @@ public class Life : MonoBehaviour
         {
             if (TryGetComponent(out LootTable lootTable))
             {
-                LootManager.current.ChangePercentage(LootManager.current.dropBar.amountPercentageIncrease);
-                LootManager.current.RandLoot(lootTable);
+                if (LootManager.current)
+                {
+                    LootManager.current.ChangePercentage(LootManager.current.dropBar.amountPercentageIncrease);
+                    LootManager.current.RandLoot(lootTable);
+                }
             }
 
             onDeath?.Invoke();

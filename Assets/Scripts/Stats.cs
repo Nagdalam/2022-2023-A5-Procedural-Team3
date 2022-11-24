@@ -65,11 +65,12 @@ public class Stats : MonoBehaviour
         IEnumerator SetEnhancementCoroutine()
         {
             stats.armor = armor.bonusArmor;
+            Debug.Log($"Buffed : {stats.armor}");
             yield return new WaitForSeconds(armor.Duration);
+            stats.armor = initialArmor;
+            Debug.Log($"UnBuffed : {stats.armor}");
+            setEnhanceArmorCor = null;
         }
-
-        stats.armor = initialArmor;
-        setEnhanceArmorCor = null;
     }
 
     public void SetEnhancement(BonusHealth bonusHeath)

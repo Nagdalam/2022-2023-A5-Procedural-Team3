@@ -28,11 +28,11 @@ public class LootManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+      /*  if (Input.GetKeyDown(KeyCode.B))
             ChangePercentage(5);
 
         if (Input.GetKeyDown(KeyCode.N))
-            ChangePercentage(-10);
+            ChangePercentage(-10);*/
     }
 
     public void ChangePercentage(float amount)
@@ -43,6 +43,7 @@ public class LootManager : MonoBehaviour
     public bool CanDropLoot()
     {
         float rand = UnityEngine.Random.Range(dropBar.minPercentage, dropBar.maxPercentage);
+        /*Debug.Log(rand);*/
         return (rand <= dropBar.slider.value);
     }
 
