@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 4628493913935185708}
   - component: {fileID: 4628493913935185711}
   - component: {fileID: 7530170454077765436}
+  - component: {fileID: 4355087421611477422}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Enemies
@@ -90,7 +91,7 @@ Transform:
   m_GameObject: {fileID: 4628493913935185715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5329556, y: -1.9427842, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7661835105820399600}
@@ -159,6 +160,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
+--- !u!114 &4355087421611477422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628493913935185715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351b25fa2df146ff97e3be186db279ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInvincible: 0
+  startLife: 100
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  stats: {fileID: 0}
 --- !u!1 &7996203350064620794
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +250,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0acb04d03d4130d468ea776e25cfde92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

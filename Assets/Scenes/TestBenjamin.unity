@@ -156,17 +156,34 @@ MonoBehaviour:
   layoutHeight: 15
   defaultRoom: {fileID: 3558366831715538505, guid: 73533378c15c6084baab85e07509bda6, type: 3}
   firstRoom: {x: 8, y: 8}
-  regularProb: 5
+  regularProb: 10
   minibossProb: 0
   recovProb: 0
   pathLength: 8
   roomDimension: {x: 20, y: 10}
-  spawner:
-  - {fileID: 5537170825705704791, guid: ae1ebb631f127374bab8a9285de1749e, type: 3}
-  - {fileID: 5537170825705704791, guid: 1980cd11297f374499bbb78fa9de561f, type: 3}
-  - {fileID: 5537170825705704791, guid: cebff950ebac04642acf045c0576f187, type: 3}
-  - {fileID: 5537170825705704791, guid: a082d6483a0cb1e4a9432b7024b6d45b, type: 3}
-  - {fileID: 5537170825705704791, guid: 51f1f97d84351944ea62b870a0fee735, type: 3}
+  listSpawner:
+  - _spawner:
+    - {fileID: 5537170825705704791, guid: ae1ebb631f127374bab8a9285de1749e, type: 3}
+    - {fileID: 5537170825705704791, guid: 1980cd11297f374499bbb78fa9de561f, type: 3}
+    - {fileID: 5537170825705704791, guid: cebff950ebac04642acf045c0576f187, type: 3}
+    - {fileID: 5537170825705704791, guid: a082d6483a0cb1e4a9432b7024b6d45b, type: 3}
+    - {fileID: 5537170825705704791, guid: 51f1f97d84351944ea62b870a0fee735, type: 3}
+    - {fileID: 5537170825705704791, guid: c05930851930fd2448a1e7e0ca2c499d, type: 3}
+  - _spawner:
+    - {fileID: 5537170825705704791, guid: 9e96f5c87e6c3ad47bf3bd4d03ecc97a, type: 3}
+    - {fileID: 5537170825705704791, guid: e9185a07d8f142f449d78bc7542ca8d1, type: 3}
+    - {fileID: 5537170825705704791, guid: c11b7cfce51cd3d40ab32c64b83da1f5, type: 3}
+    - {fileID: 5537170825705704791, guid: 4833f556d40703d40a1b08e0557e5678, type: 3}
+    - {fileID: 5537170825705704791, guid: c553c62f57d6a3b49893e34a457c09d3, type: 3}
+    - {fileID: 5537170825705704791, guid: 4713b64ca3e40724fa311f060680f96a, type: 3}
+  - _spawner:
+    - {fileID: 5537170825705704791, guid: 7d3b89d49e8405141b83eb8bd2e7654a, type: 3}
+    - {fileID: 5537170825705704791, guid: dcd891fe62509e042bf3a50c32d3dfe8, type: 3}
+    - {fileID: 5537170825705704791, guid: c2bc4c8259c2ffc42a788a14027d55eb, type: 3}
+    - {fileID: 5537170825705704791, guid: eadea217530da624aae74a350907d5f2, type: 3}
+    - {fileID: 5537170825705704791, guid: 08d71c685605a3945843086ce202d7c2, type: 3}
+    - {fileID: 5537170825705704791, guid: 167c9585586bc9244a12473378e1894c, type: 3}
+  spawnerChoosed: []
   openDoorPrefab: {fileID: 6217952808718131520, guid: 82a2d0ac221987d45b9f5392fafd301e, type: 3}
   lockedDoorPrefab: {fileID: 536000874044555347, guid: 8108273a51c04d74d844b9290975e6c9, type: 3}
 --- !u!4 &20105511
@@ -178,7 +195,7 @@ Transform:
   m_GameObject: {fileID: 20105509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

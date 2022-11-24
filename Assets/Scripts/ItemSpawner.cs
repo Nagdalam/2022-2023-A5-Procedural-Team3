@@ -265,10 +265,33 @@ public class ItemSpawner : MonoBehaviour
         {
             if (door1)
             {
-                var temp = Instantiate(openDoorPrefab, door1.transform.position, door1.transform.rotation,this.transform);
+                var temp = Instantiate(openDoorPrefab, door1.transform.position, door1.transform.rotation, this.transform);
                 temp.transform.localPosition = rightDoorPosition;
                 Destroy(door1);
             }
+        }
+    }
+    public void DeleteDoor(Room.doorDirection direction)
+    {
+        if (direction == Room.doorDirection.Up)
+        {
+            if (door3)
+                Destroy(door3);
+        }
+        if (direction == Room.doorDirection.Down)
+        {
+            if (door4)
+                Destroy(door4);
+        }
+        if (direction == Room.doorDirection.Left)
+        {
+            if (door2)
+                Destroy(door2);
+        }
+        if (direction == Room.doorDirection.Right)
+        {
+            if (door1)
+                Destroy(door1);
         }
     }
 }
