@@ -10,26 +10,32 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        movement = GetComponent<Rigidbody2DMovement>();
-        player = FindObjectOfType<PlayerController>().transform;
-        enemiesManager = GetComponentInParent<RoomEnemiesManager>();
-        enemiesManager.AddEnemyToRoom(this);
+        
     }
 
     private void Start()
     {
+        //player = FindObjectOfType<PlayerController>().transform;
+        movement = GetComponent<Rigidbody2DMovement>();
+        //if (GetComponentInParent<RoomEnemiesManager>() != null)
+        //{
+        //    //Debug.Log("Has correct parent");
+        //    //GetComponentInParent<RoomEnemiesManager>().AddEnemyToRoom(this);
+        //}
         if (enemyInvok)
         {
             enabled = true;
         }
-        else
-        enabled = false;
+        //else
+        //enabled = false;
+        
+        
     }
 
-    private void OnDisable()
-    {
-        movement.SetDirection(Vector2.zero);
-    }
+    //private void OnDisable()
+    //{
+    //    movement.SetDirection(Vector2.zero);
+    //}
 
     private void FixedUpdate()
     {
@@ -41,6 +47,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
-        enemiesManager.RemoveEnemyFromRoom(this);
+        //GetComponentInParent<RoomEnemiesManager>().RemoveEnemyFromRoom(this);
     }
 }
