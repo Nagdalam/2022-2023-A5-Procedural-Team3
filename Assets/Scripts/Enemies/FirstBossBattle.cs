@@ -26,6 +26,7 @@ public class FirstBossBattle : MonoBehaviour
     private float AmoutBullet = 12;
     [SerializeField]
     private float speedBullet;
+    public GameObject teleporter;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,5 +84,10 @@ public class FirstBossBattle : MonoBehaviour
             Debug.Log("Start fight");
             startFight= true;
         }
+    }
+
+    void OnDestroy()
+    {
+        Instantiate(teleporter, transform.position, Quaternion.identity);
     }
 }
