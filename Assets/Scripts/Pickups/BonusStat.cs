@@ -9,6 +9,6 @@ public abstract class BonusStat : Pickup
         
     }
 
-    private float duration = 0;
+    public float duration = 0;
     public float Duration { get => duration; set => duration = value; }
 }
