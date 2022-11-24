@@ -29,6 +29,11 @@ public class RoomGenerator : MonoBehaviour
 
     private bool boss1Spawn;
 
+    private void Start()
+    {
+        CreateDungeon();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -70,9 +75,9 @@ public class RoomGenerator : MonoBehaviour
         //Instantiate(testStart, new Vector3(10, 10, 0), Quaternion.identity);
         //G�n�ration vers Spawn
 
-        TracePath(new Vector2((int)firstRoom.x + 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 1);
-        TracePath(new Vector2((int)firstRoom.x - 1, (int)firstRoom.y), pathLength, Room.roomType.Item, 2);
-        TracePath(new Vector2((int)firstRoom.x, (int)firstRoom.y + 1), pathLength, Room.roomType.Item, 3);
+        TracePath(new Vector2((int)firstRoom.x + 1, (int)firstRoom.y), UnityEngine.Random.Range(pathLength/2, pathLength), Room.roomType.Spawn, 1);
+        TracePath(new Vector2((int)firstRoom.x - 1, (int)firstRoom.y), UnityEngine.Random.Range(pathLength / 2, pathLength), Room.roomType.Item, 2);
+        TracePath(new Vector2((int)firstRoom.x, (int)firstRoom.y + 1), UnityEngine.Random.Range(pathLength / 2, pathLength), Room.roomType.Item, 3);
         if (error == true)
         {
             error = false;
@@ -237,7 +242,7 @@ public class RoomGenerator : MonoBehaviour
             {
                 if (!indexCheck.Contains(i) && !indexCheck.Contains(j) && i != j)
                 {
-                    if (Vector3.Distance(_door[i].transform.position, _door[j].transform.position) <= 1)
+                    if (Vector3.Distance(_door[i].transform.position, _door[j].transform.position) <= 3)
                     {
                         indexCheck.Add(i);
                         indexCheck.Add(j);

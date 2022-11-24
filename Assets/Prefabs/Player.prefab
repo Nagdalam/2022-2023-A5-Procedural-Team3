@@ -47,10 +47,10 @@ MonoBehaviour:
   prefabBullet: {fileID: 5485737571027047290, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
   bullet: {fileID: 5853427791071713410, guid: d41d9f1b7a4f7b44e97c9fe354697818, type: 3}
   currentWeapon: {fileID: 11400000, guid: fded1da11d2ee334aaddd84abd444754, type: 2}
-  fireRatePercent: 33
-  damageBulletPercent: 200
+  fireRatePercent: 0
+  damageBulletPercent: 0
   areaBulletPercent: 0
-  speedBulletPercent: 66
+  speedBulletPercent: 0
   fireRateResult: 0
   damageBulletResult: 0
   areaBulletResult: 0

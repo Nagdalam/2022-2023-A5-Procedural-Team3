@@ -2,7 +2,7 @@
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform player;
+    public PlayerController player;
     private Rigidbody2DMovement movement;
     public Life life;
     private RoomEnemiesManager enemiesManager;
@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        //player = FindObjectOfType<PlayerController>().transform;
+       
         movement = GetComponent<Rigidbody2DMovement>();
         //if (GetComponentInParent<RoomEnemiesManager>() != null)
         //{
@@ -31,6 +31,11 @@ public class EnemyController : MonoBehaviour
 
 
     }
+    private void Update()
+    {
+        if (enemyInvok && !player)
+            player = FindObjectOfType<PlayerController>();
+    }
 
     //private void OnDisable()
     //{
@@ -42,7 +47,7 @@ public class EnemyController : MonoBehaviour
         if (player == null)
             return;
 
-        movement.SetDirection(player.position - transform.position);
+        movement.SetDirection(player.transform.position - transform.position);
     }
 
     private void OnDestroy()

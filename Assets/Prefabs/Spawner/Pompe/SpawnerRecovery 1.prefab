@@ -73,6 +73,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList: []
   itemGameObjectList:
+  - item: {fileID: 7143052517036596304, guid: 11b8838a4c6ce77419cc01543c075555, type: 3}
+    nb: 3
+    rarity: 100
   - item: {fileID: 7143052517036596304, guid: fafb877a873f5e945937d9c36a5ac408, type: 3}
     nb: 3
     rarity: 75

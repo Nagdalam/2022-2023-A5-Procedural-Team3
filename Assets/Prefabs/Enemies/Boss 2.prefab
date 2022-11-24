@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7096699f015a1042a9704ef97ec1883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4419314047606676974, guid: 698726e94352fe249b5fea65ef095614, type: 3}
+  enemyPrefab: {fileID: 4419314047606676974, guid: 0dac7fa67fef75d429939f8a96482bf1, type: 3}
   delayToSpawn: 10
   amoutEnemy: 2
   spawns:

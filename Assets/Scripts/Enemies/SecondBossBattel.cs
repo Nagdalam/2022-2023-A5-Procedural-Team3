@@ -27,12 +27,12 @@ public class SecondBossBattel : MonoBehaviour
     private float AmoutBullet =4;
     [SerializeField]
     private float speedBullet;
-    private Transform player;
+    private PlayerController player;
     // Start is called before the first frame update
     void Start()
     {
         bulletsParent = new GameObject($"{name} bullets").transform;
-        player = FindObjectOfType<PlayerController>().transform;
+        player = FindObjectOfType<PlayerController>();
         movement = GetComponent<Rigidbody2DMovement>();
     }
 
@@ -77,6 +77,8 @@ public class SecondBossBattel : MonoBehaviour
             TryToShoot();
             SpawnEnemy();
         }
+        if(!player)
+            player = FindObjectOfType<PlayerController>();
     }
 
 
@@ -95,8 +97,7 @@ public class SecondBossBattel : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (player == null && startFight)
-            return;
-        movement.SetDirection(player.position - transform.position);
+        if (player && startFight)
+            movement.SetDirection(player.transform.position - transform.position);
     }
 }
