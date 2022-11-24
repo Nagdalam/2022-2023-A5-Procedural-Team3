@@ -192,6 +192,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   stats: {fileID: 0}
+  dropAmountIncrease: 50
 --- !u!1 &7996203350064620794
 GameObject:
   m_ObjectHideFlags: 0

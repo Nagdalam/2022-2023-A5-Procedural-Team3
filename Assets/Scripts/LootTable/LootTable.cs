@@ -21,10 +21,10 @@ public class LootTable : MonoBehaviour, ILootable
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        /*if (Input.GetKeyDown(KeyCode.V))
         {
             LootManager.current.RandLoot(this);
-        }
+        }*/
     }
 
     public void RandLoot()
@@ -54,7 +54,7 @@ public class LootTable : MonoBehaviour, ILootable
         if (!selectedLoot)
             return;
 
-        Instantiate(selectedLoot);
+        Instantiate(selectedLoot, gameObject.transform.position, Quaternion.identity);
     }
 
     void ILootable.SetData(DataEntity dataEntity)
