@@ -14,6 +14,7 @@ public class RoomGenerator : MonoBehaviour
     public int regularProb, minibossProb, recovProb;
     public int pathLength;
     public Vector2 roomDimension;
+    bool error = false;
 
     public List<GameObject> spawner;
     public GameObject openDoorPrefab;
@@ -62,6 +63,12 @@ public class RoomGenerator : MonoBehaviour
         TracePath(new Vector2((int)firstRoom.x + 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 1);
         TracePath(new Vector2((int)firstRoom.x - 1, (int)firstRoom.y), pathLength, Room.roomType.Spawn, 2);
         TracePath(new Vector2((int)firstRoom.x, (int)firstRoom.y + 1), pathLength, Room.roomType.Spawn, 3);
+        if(error == true)
+        {
+            CreateDungeon();
+            error = false;
+            return;
+        }
         //TracePath(firstRoom, pathLength, Room.roomType.Item, 3);
         //TracePath(firstRoom, pathLength, Room.roomType.Item, 4);
         bool secretRoomCreated = false;
@@ -196,7 +203,7 @@ public class RoomGenerator : MonoBehaviour
                 {
                     Debug.Log("Abort");
                     roomLayout[(int)origin.x, (int)origin.y].type = lastRoomType;
-                    CreateDungeon();
+                    error = true;
                     return;
 
                 }

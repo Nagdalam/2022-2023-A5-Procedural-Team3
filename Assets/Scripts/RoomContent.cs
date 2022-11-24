@@ -61,6 +61,10 @@ public class RoomContent : MonoBehaviour
         {
             secretReward.SetActive(true);
         }
+        //else if (myRoom.type == Room.roomType.Spawn)
+        //{
+        //    secretReward.SetActive(true);
+        //}
     }
 
     // Update is called once per frame
