@@ -9,6 +9,7 @@ public class RoomContent : MonoBehaviour
     public GameObject doorLeft, doorRight, doorUp, doorDown;
     public GameObject secretReward;
     public GameObject player;
+    public GameObject crackedWalls;
 
     public CinemachineVirtualCamera vcam;
 
@@ -47,14 +48,11 @@ public class RoomContent : MonoBehaviour
             GameObject newPlayer = Instantiate(player, secretReward.transform.position, Quaternion.identity);
             newPlayer.transform.parent = gameObject.transform;
         }
-        if (myRoom.type == Room.roomType.Boss)
+        if (myRoom.type == Room.roomType.Secret || myRoom.type == Room.roomType.SecretEntrance)
         {
-            Debug.Log("Boss");
+            crackedWalls.SetActive(true);
         }
-        if (myRoom.type == Room.roomType.Empty)
-        {
-            Debug.Log("Empty");
-        }
+       
 
     }
 

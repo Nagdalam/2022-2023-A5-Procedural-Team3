@@ -113,6 +113,29 @@ public class RoomGenerator : MonoBehaviour
                     {
                         roomLayout[i, j].doors.Add(Room.doorDirection.Up);
                     }
+                    if (roomLayout[i, j].type == Room.roomType.Secret)
+                    {
+                        if (i - 1 >= 0 && roomLayout[i - 1, j] !=null && roomLayout[i - 1, j].type == Room.roomType.SecretEntrance)
+                        {
+                            roomLayout[i, j].doors.Add(Room.doorDirection.Left);
+                            roomLayout[i-1, j].doors.Add(Room.doorDirection.Right);
+                        }
+                        if (i + 1 < layoutWidth - 1 && roomLayout[i + 1, j] != null && roomLayout[i + 1, j].type == Room.roomType.SecretEntrance)
+                        {
+                            roomLayout[i, j].doors.Add(Room.doorDirection.Right);
+                            roomLayout[i + 1, j].doors.Add(Room.doorDirection.Left);
+                        }
+                        if (j - 1 >= 0 && roomLayout[i, j - 1] != null && roomLayout[i, j - 1].type == Room.roomType.SecretEntrance)
+                        {
+                            roomLayout[i, j].doors.Add(Room.doorDirection.Down);
+                            roomLayout[i, j-1].doors.Add(Room.doorDirection.Up);
+                        }
+                        if (j + 1 < layoutHeight - 1 && roomLayout[i, j + 1] != null && roomLayout[i, j + 1].type == Room.roomType.SecretEntrance)
+                        {
+                            roomLayout[i, j].doors.Add(Room.doorDirection.Up);
+                            roomLayout[i, j + 1].doors.Add(Room.doorDirection.Down);
+                        }
+                    }
                     //Debug.Log("Generate room");
                     GameObject newRoom = Instantiate(defaultRoom, new Vector3(i * roomDimension.x, j * roomDimension.y, 0), Quaternion.identity);
                     newRoom.GetComponent<RoomContent>().myRoom = roomLayout[i, j];
