@@ -226,6 +226,21 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &177600839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177600827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9344c1399f675448d1eb737b0a8369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    armor: 0
+    maxHealth: 0
 --- !u!1001 &205161740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -460,7 +475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: -10}
+  m_LocalPosition: {x: -20, y: -10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1838,6 +1853,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 785693504, guid: 5218b1326248c8c4b93b5d5335035873, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 177600839}
     - target: {fileID: 4570305563332787, guid: 5218b1326248c8c4b93b5d5335035873, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2250,8 +2269,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9186752439452499411, guid: 6235d75242cebb64d80566344a1af0b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 558
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186752439452499411, guid: 6235d75242cebb64d80566344a1af0b9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 550.8538
+      value: 368
       objectReference: {fileID: 0}
     - target: {fileID: 9186752439452499412, guid: 6235d75242cebb64d80566344a1af0b9, type: 3}
       propertyPath: percentageText

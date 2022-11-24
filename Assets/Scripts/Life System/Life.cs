@@ -20,6 +20,8 @@ public class Life : MonoBehaviour
 
     private bool isAlive = true;
 
+    public Stats stats = null;
+
     private void Awake()
     {
         /*LootManager.current.randLootAction(TryGetComponent(out LootTable lt));*/
@@ -34,6 +36,11 @@ public class Life : MonoBehaviour
         if (!isAlive || isInvincible) return;
         if (damage > currentLife)
             damage = currentLife;
+
+        if (stats)
+        {
+            damage -= (uint)((float)damage * stats.stats.armor / 100);
+        }
         currentLife -= damage;
         onHealthChange.Invoke(currentLife);
         if (currentLife == 0)

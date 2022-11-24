@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading;
-using UnityEditorInternal;
 using UnityEngine;
-using static Stats;
 
 public class Stats : MonoBehaviour
 {
@@ -15,17 +10,20 @@ public class Stats : MonoBehaviour
         WEAPON,
     }
 
+    [System.Serializable]
     public struct SStats
     {
-        public float armor;
-        public float maxHealth;
+        [SerializeField] [Range(0, 100)] public float armor;
+        [SerializeField] [Range(0, 10)] public float maxHealth;
     }
 
-    public SStats stats;
+    [SerializeField] public SStats stats;
+    private SStats initialStats;
 
     private void Awake()
     {
-
+        initialStats.armor = stats.armor;
+        initialStats.maxHealth = stats.maxHealth;
     }
 
     protected Coroutine setEnhanceArmorCor = null;
@@ -53,7 +51,8 @@ public class Stats : MonoBehaviour
         setEnhanceHealthCor = null;
         setEnhanceWeaponCor = null;
 
-        stats.armor = 0;
+        stats.armor = initialStats.armor;
+        stats.maxHealth = initialStats.maxHealth;
     }
 
     public void SetEnhancement(BonusArmor armor)
@@ -61,11 +60,10 @@ public class Stats : MonoBehaviour
         if (setEnhanceArmorCor != null)
             return;
 
-        float initialArmor = 0;
+        float initialArmor = stats.armor;
         setEnhanceArmorCor = StartCoroutine(SetEnhancementCoroutine());
         IEnumerator SetEnhancementCoroutine()
         {
-            initialArmor = stats.armor;
             stats.armor = armor.bonusArmor;
             yield return new WaitForSeconds(armor.Duration);
         }
@@ -76,14 +74,13 @@ public class Stats : MonoBehaviour
 
     public void SetEnhancement(BonusHealth bonusHeath)
     {
-        if (setEnhanceArmorCor != null)
+        if (setEnhanceHealthCor != null)
             return;
 
-        float initialMaxHealth = 0;
-        setEnhanceArmorCor = StartCoroutine(SetEnhancementCoroutine());
+        float initialMaxHealth = stats.maxHealth;
+        setEnhanceHealthCor = StartCoroutine(SetEnhancementCoroutine());
         IEnumerator SetEnhancementCoroutine()
         {
-            initialMaxHealth = stats.maxHealth;
             stats.maxHealth = bonusHeath.bonusHealth;
             yield return new WaitForSeconds(bonusHeath.Duration);
         }
