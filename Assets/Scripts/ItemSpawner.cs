@@ -170,33 +170,33 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
-        if (showGizmo)
-        {
-            for (int i = 0; i < itemSpawn.Count; ++i)
-            {
-                Handles.color = Color.blue;
-                Handles.DrawWireDisc(itemSpawn[i].transform.position, itemSpawn[i].transform.forward, distanceMinBetweenObjects);
-            }
+    //void OnDrawGizmosSelected()
+    ////{
+    ////    if (showGizmo)
+    ////    {
+    ////        for (int i = 0; i < itemSpawn.Count; ++i)
+    ////        {
+    ////            Handles.color = Color.blue;
+    ////            Handles.DrawWireDisc(itemSpawn[i].transform.position, itemSpawn[i].transform.forward, distanceMinBetweenObjects);
+    ////        }
 
-            for (int i = 0; i < itemGameObjectSpawn.Count; ++i)
-            {
-                Handles.color = Color.green;
-                Handles.DrawWireDisc(itemGameObjectSpawn[i].transform.position, itemGameObjectSpawn[i].transform.forward, distanceMinBetweenObjects);
-            }
+    ////        for (int i = 0; i < itemGameObjectSpawn.Count; ++i)
+    ////        {
+    ////            Handles.color = Color.green;
+    ////            Handles.DrawWireDisc(itemGameObjectSpawn[i].transform.position, itemGameObjectSpawn[i].transform.forward, distanceMinBetweenObjects);
+    ////        }
 
-            Handles.color = Color.red;
-            if (door1)
-                Handles.DrawWireDisc(door1.transform.position, door1.transform.forward, distanceFromDoor);
-            if (door2)
-                Handles.DrawWireDisc(door2.transform.position, door2.transform.forward, distanceFromDoor);
-            if (door3)
-                Handles.DrawWireDisc(door3.transform.position, door3.transform.forward, distanceFromDoor);
-            if (door4)
-                Handles.DrawWireDisc(door4.transform.position, door4.transform.forward, distanceFromDoor);
-        }
-    }
+    ////        Handles.color = Color.red;
+    ////        if (door1)
+    ////            Handles.DrawWireDisc(door1.transform.position, door1.transform.forward, distanceFromDoor);
+    ////        if (door2)
+    ////            Handles.DrawWireDisc(door2.transform.position, door2.transform.forward, distanceFromDoor);
+    ////        if (door3)
+    ////            Handles.DrawWireDisc(door3.transform.position, door3.transform.forward, distanceFromDoor);
+    ////        if (door4)
+    ////            Handles.DrawWireDisc(door4.transform.position, door4.transform.forward, distanceFromDoor);
+    ////    }
+    //}
 
     public void Refresh()
     {
