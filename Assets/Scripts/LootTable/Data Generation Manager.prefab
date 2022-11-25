@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116649871993211867}
-  - component: {fileID: 7010233374960396760}
   - component: {fileID: 144140390}
   m_Layer: 0
   m_Name: Data Generation Manager
@@ -33,20 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7010233374960396760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116649871993211869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a26bfa1e68ae3f48b67e8a5f2197b12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  csvFile: {fileID: 4900000, guid: b3ea347b7e379c64da2170a834509688, type: 3}
-  dataGeneralLoots: {fileID: 11400000, guid: 109a00287d607d4419255e62265e22a8, type: 2}
 --- !u!114 &144140390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5313b610e9dace74e96f4602568ed29e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   spawnable:
   - {fileID: 11400000, guid: 69b81ebfd8572324fb2764084f4bb355, type: 2}
